@@ -1,0 +1,29 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Board {
+  id        String   @id @default(cuid())
+  name      String
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  strokes   Stroke[]
+}
+
+model Stroke {
+  id        String   @id @default(cuid())
+  board     Board    @relation(fields: [boardId], references: [id])
+  boardId   String
+  fromX     Float
+  fromY     Float
+  toX       Float
+  toY       Float
+  color     String
+  width     Float
+  createdAt DateTime @default(now())
+}
