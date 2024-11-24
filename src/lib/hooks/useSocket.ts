@@ -1,5 +1,3 @@
-// lib/hooks/useSocket.ts
-
 import { useEffect, useRef } from "react";
 import { io, Socket } from "socket.io-client";
 import { DrawData, StickerData } from "../types/socket";
@@ -10,9 +8,13 @@ interface SocketHook {
   drawOnBoard: (boardId: string, data: DrawData) => void;
   addSticker: (boardId: string, data: StickerData) => void;
   onDraw: (callback: (data: DrawData) => void) => void;
+  offDraw: (callback: (data: DrawData) => void) => void;
   onSticker: (callback: (data: StickerData) => void) => void;
+  offSticker: (callback: (data: StickerData) => void) => void;
   onUserJoined: (callback: (data: { username: string }) => void) => void;
+  offUserJoined: (callback: (data: { username: string }) => void) => void;
   onUserLeft: (callback: (data: { username: string }) => void) => void;
+  offUserLeft: (callback: (data: { username: string }) => void) => void;
   emit: (event: string, data: unknown) => void;
 }
 
@@ -21,7 +23,7 @@ export const useSocket = (): SocketHook => {
 
   // Initialize the socket connection only once
   if (!socketRef.current) {
-    socketRef.current = io();
+    socketRef.current = io(); // You can pass the server URL here if different from the client
   }
 
   useEffect(() => {
@@ -52,6 +54,7 @@ export const useSocket = (): SocketHook => {
     socket.emit("add-sticker", boardId, data);
   };
 
+  // Adding event listeners
   const onDraw = (callback: (data: DrawData) => void) => {
     socket.on("draw", callback);
   };
@@ -68,6 +71,23 @@ export const useSocket = (): SocketHook => {
     socket.on("user-left", callback);
   };
 
+  // Removing event listeners
+  const offDraw = (callback: (data: DrawData) => void) => {
+    socket.off("draw", callback);
+  };
+
+  const offSticker = (callback: (data: StickerData) => void) => {
+    socket.off("add-sticker", callback);
+  };
+
+  const offUserJoined = (callback: (data: { username: string }) => void) => {
+    socket.off("user-joined", callback);
+  };
+
+  const offUserLeft = (callback: (data: { username: string }) => void) => {
+    socket.off("user-left", callback);
+  };
+
   const emit = (event: string, data: unknown) => {
     socket.emit(event, data);
   };
@@ -78,9 +98,13 @@ export const useSocket = (): SocketHook => {
     drawOnBoard,
     addSticker,
     onDraw,
+    offDraw,
     onSticker,
+    offSticker,
     onUserJoined,
+    offUserJoined,
     onUserLeft,
+    offUserLeft,
     emit,
   };
 };
