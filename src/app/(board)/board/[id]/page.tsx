@@ -7,7 +7,12 @@ import React from "react";
 
 export default function BoardPage({ params }: { params: { id: string } }) {
   const { id } = React.use(params);
-  const username = "Jimmy Boy";
+  // generate a random username
+  const generateUsername = () => {
+    return `User${Math.floor(Math.random() * 1000)}`;
+  };
+
+  const username = generateUsername();
 
   return (
     <div className="w-full h-full">

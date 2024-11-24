@@ -54,7 +54,6 @@ export const Canvas = ({
     drawingCanvasRef.current = drawingCanvas;
     loadBoardContent();
   }, []);
-
   const loadBoardContent = async () => {
     try {
       const res = await fetch(`/api/boards/${boardId}/strokes`);
@@ -63,7 +62,7 @@ export const Canvas = ({
       if (strokes && drawingCanvasRef.current) {
         const ctx = drawingCanvasRef.current.getContext("2d");
         if (ctx) {
-          ctx.translate(CENTER_OFFSET, CENTER_OFFSET);
+          ctx.translate(CENTER_OFFSET, CENTER_OFFSET); // First translation
           strokes.forEach((stroke: StrokeData) => {
             ctx.beginPath();
             ctx.moveTo(
@@ -157,13 +156,26 @@ export const Canvas = ({
       const drawingCtx = drawingCanvasRef.current?.getContext("2d");
       if (!drawingCtx) return;
 
+      // Set stroke style and line width
       drawingCtx.strokeStyle = color;
       drawingCtx.lineWidth = width;
+
+      // Save the current state
+      drawingCtx.save();
+
+      // Clear previous transform and set new one
+      drawingCtx.setTransform(1, 0, 0, 1, CENTER_OFFSET, CENTER_OFFSET);
+
+      // Draw the line
       drawingCtx.beginPath();
       drawingCtx.moveTo(from.x - CENTER_OFFSET, from.y - CENTER_OFFSET);
       drawingCtx.lineTo(to.x - CENTER_OFFSET, to.y - CENTER_OFFSET);
       drawingCtx.stroke();
 
+      // Restore context
+      drawingCtx.restore();
+
+      // Update display
       drawGrid();
     },
     [drawGrid]
@@ -172,7 +184,6 @@ export const Canvas = ({
   // Event handlers
   const handleWheel = useCallback(
     (e: WheelEvent) => {
-      e.preventDefault();
       const delta = e.deltaY;
       const scaleChange = -delta / 500;
       const newScale = Math.min(
@@ -222,7 +233,7 @@ export const Canvas = ({
       };
 
       drawLine(drawData.from, drawData.to, drawData.color, drawData.width);
-      
+
       socket.drawOnBoard(boardId, drawData);
       lastPoint.current = currentPoint;
     },
@@ -271,8 +282,6 @@ export const Canvas = ({
 
     // Listen for draw events
     socket.onDraw((data) => {
-      console.log("Drawing:", data);
-
       drawLine(data.from, data.to, data.color, data.width);
     });
 
@@ -341,7 +350,6 @@ export const Canvas = ({
         onMouseDown={(e) => {
           if (isDrawMode && e.button === 0) {
             startDrawing(e);
-            console.log("Drawing started");
           } else {
             startPan(e);
           }
@@ -351,13 +359,11 @@ export const Canvas = ({
             pan(e);
           } else if (isDrawing.current) {
             draw(e);
-            console.log("Drawing...");
           }
         }}
         onMouseUp={() => {
           stopDrawing();
           stopPan();
-          console.log("Drawing stopped");
         }}
         onMouseLeave={() => {
           stopDrawing();
