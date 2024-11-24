@@ -130,22 +130,31 @@ export const Canvas = ({
         transform.x,
         transform.y
       );
-      ctx.drawImage(drawingCanvasRef.current, -CENTER_OFFSET, -CENTER_OFFSET);
+      ctx.drawImage(
+        drawingCanvasRef.current,
+        -CENTER_OFFSET,
+        -CENTER_OFFSET,
+        VIRTUAL_SIZE,
+        VIRTUAL_SIZE
+      );
     }
 
     ctx.restore();
   }, [transform]);
 
+  // Update getCanvasPoint for correct coordinate transformation
   const getCanvasPoint = useCallback(
     (clientX: number, clientY: number): Point => {
       const canvas = canvasRef.current;
       if (!canvas) return { x: 0, y: 0 };
 
       const rect = canvas.getBoundingClientRect();
+      const x = (clientX - rect.left - transform.x) / transform.scale;
+      const y = (clientY - rect.top - transform.y) / transform.scale;
+
       return {
-        x:
-          (clientX - rect.left - transform.x) / transform.scale + CENTER_OFFSET,
-        y: (clientY - rect.top - transform.y) / transform.scale + CENTER_OFFSET,
+        x: x + CENTER_OFFSET,
+        y: y + CENTER_OFFSET,
       };
     },
     [transform]
