@@ -18,14 +18,3 @@ export interface StrokeData {
   width: number;
   createdAt: string;
 }
-
-export interface StickerData {
-  x: number;
-  y: number;
-  text: string;
-}
-
-export interface UserData {
-  username: string;
-  boardId: string;
-}

@@ -8,11 +8,12 @@ generator client {
 }
 
 model Board {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   name      String
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
+  updatedAt DateTime  @updatedAt
+  createdAt DateTime  @default(now())
   strokes   Stroke[]
+  stickers  Sticker[]
 }
 
 model Stroke {
@@ -26,4 +27,18 @@ model Stroke {
   color     String
   width     Float
   createdAt DateTime @default(now())
+}
+
+model Sticker {
+  id        String   @id @default(cuid())
+  board     Board    @relation(fields: [boardId], references: [id])
+  boardId   String
+  imageUrl  String
+  x         Float
+  y         Float
+  width     Float
+  height    Float
+  rotation  Float    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
