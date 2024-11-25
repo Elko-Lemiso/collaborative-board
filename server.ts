@@ -53,7 +53,27 @@ app.prepare().then(() => {
       socket.to(boardId).emit("draw", data);
     });
 
-    socket.on("add-sticker", (boardId: string, data) => {
+    socket.on("add-sticker", async (boardId: string, data) => {
+      try {
+        // Save the sticker to the database
+        await prisma.sticker.create({
+          data: {
+            id: data.id,
+            boardId: boardId,
+            imageUrl: data.imageUrl,
+            x: data.x,
+            y: data.y,
+            width: data.width,
+            height: data.height,
+            rotation: data.rotation || 0,
+            // Prisma automatically handles 'createdAt' and 'updatedAt' if defined in the schema
+          },
+        });
+      } catch (error) {
+        console.error("Error saving sticker:", error);
+      }
+
+      // Broadcast to other clients
       socket.to(boardId).emit("add-sticker", data);
     });
 

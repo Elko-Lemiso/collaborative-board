@@ -1,6 +1,9 @@
+// src/lib/hooks/useSocket.ts
+
 import { useEffect, useRef } from "react";
 import { io, Socket } from "socket.io-client";
-import { DrawData, StickerData } from "../types/socket";
+import { DrawData } from "../types/socket";
+import { StickerData } from "../types/sticker";
 
 interface SocketHook {
   joinBoard: (boardId: string, username: string) => void;

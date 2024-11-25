@@ -1,102 +1,79 @@
 // src/app/api/boards/[boardId]/stickers/upload/route.ts
 
 import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
-import formidable from "formidable";
-import fs from "fs";
 import path from "path";
+import { writeFile, mkdir } from "fs/promises";
+import { v4 as uuidv4 } from "uuid";
 
-// Disable Next.js default body parser to handle multipart form data
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-// **Specify the runtime to use Node.js**
-export const runtime = "nodejs";
-
-const uploadDir = path.join(process.cwd(), "public", "uploads", "stickers");
-
-// Ensure the upload directory exists
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
+/**
+ * Handles POST requests to upload a sticker.
+ *
+ * @param request - The incoming request object.
+ * @param context - Contains route parameters.
+ * @returns A JSON response with the image URL or an error message.
+ */
 export async function POST(
-  request: NextRequest,
-  context: { params: { boardId: string } }
+  request: Request,
+  { params }: { params: { boardId: string } }
 ) {
-  const { boardId } = context.params;
+  const { boardId } = params;
 
-  const form = formidable({
-    uploadDir: uploadDir,
-    keepExtensions: true,
-    maxFileSize: 5 * 1024 * 1024, // 5MB limit
-  });
+  console.log("Uploading sticker to board:", boardId);
 
-  return new Promise<NextResponse>((resolve) => {
-    form.parse(request, async (err, fields, files) => {
-      if (err) {
-        console.error("Error parsing form:", err);
-        return resolve(
-          NextResponse.json({ error: "Error uploading file." }, { status: 500 })
-        );
-      }
+  try {
+    // Parse the incoming form data
+    const formData = await request.formData();
+    const file = formData.get("sticker");
 
-      const file = Array.isArray(files.sticker)
-        ? files.sticker[0]
-        : files.sticker;
+    // Validate the presence of the file
+    if (!file || !(file instanceof File)) {
+      return NextResponse.json(
+        { error: "No sticker file received." },
+        { status: 400 }
+      );
+    }
 
-      if (!file) {
-        return resolve(
-          NextResponse.json(
-            { error: "No file uploaded." },
-            { status: 400 }
-          )
-        );
-      }
+    // Validate file type
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+    if (!allowedTypes.includes(file.type)) {
+      return NextResponse.json(
+        { error: "Invalid file type. Only JPEG, PNG, and GIF are allowed." },
+        { status: 400 }
+      );
+    }
 
-      // Validate file type (basic validation)
-      const validMimeTypes = ["image/jpeg", "image/png", "image/gif"];
-      if (!validMimeTypes.includes(file.mimetype || "")) {
-        // Remove the invalid file
-        fs.unlink(file.filepath, (unlinkErr) => {
-          if (unlinkErr) {
-            console.error("Error deleting invalid file:", unlinkErr);
-          }
-        });
-        return resolve(
-          NextResponse.json(
-            { error: "Invalid file type." },
-            { status: 400 }
-          )
-        );
-      }
+    // Generate a unique filename and sanitize it
+    const originalName = file.name;
+    const sanitizedFilename = originalName.replace(/\s+/g, "_");
+    const uniqueFilename = `${uuidv4()}-${sanitizedFilename}`;
 
-      // Generate a unique filename
-      const uniqueFilename = `${Date.now()}-${file.originalFilename}`;
-      const newPath = path.join(uploadDir, uniqueFilename);
+    // Define the upload directory
+    const uploadDir = path.join(process.cwd(), "public", "uploads", "stickers");
 
-      // Rename the file to include the unique filename
-      fs.rename(file.filepath, newPath, async (renameErr) => {
-        if (renameErr) {
-          console.error("Error renaming file:", renameErr);
-          return resolve(
-            NextResponse.json(
-              { error: "Error saving file." },
-              { status: 500 }
-            )
-          );
-        }
+    // Ensure the upload directory exists
+    await mkdir(uploadDir, { recursive: true });
 
-        // Construct the image URL
-        const imageUrl = `/uploads/stickers/${uniqueFilename}`;
+    // Define the file path
+    const filePath = path.join(uploadDir, uniqueFilename);
 
-        return resolve(
-          NextResponse.json({ imageUrl }, { status: 200 })
-        );
-      });
-    });
-  });
+    // Convert the file to a buffer and write it to the filesystem
+    const buffer = Buffer.from(await file.arrayBuffer());
+    await writeFile(filePath, buffer);
+
+    // Construct the image URL
+    const imageUrl = `/uploads/stickers/${uniqueFilename}`;
+
+    // Optionally, save sticker data to the database here
+    // For example:
+    // await prisma.sticker.create({ data: { ... } });
+
+    // Return the image URL in the response
+    return NextResponse.json({ imageUrl }, { status: 201 });
+  } catch (error) {
+    console.error("Error occurred during sticker upload:", error);
+    return NextResponse.json(
+      { error: "Failed to upload sticker." },
+      { status: 500 }
+    );
+  }
 }

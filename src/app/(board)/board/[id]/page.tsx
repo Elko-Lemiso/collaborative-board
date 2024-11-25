@@ -1,12 +1,10 @@
-// app/boards/[id]/page.tsx
 "use client";
 
-import { Canvas } from "@/components/Canvas";
+import Canvas from "@/components/Canvas";
 import { useStore } from "@/lib/store";
 import React from "react";
 
 export default function BoardPage({ params }: { params: { id: string } }) {
-  const { id } = React.use(params);
   // generate a random username
   const generateUsername = () => {
     return `User${Math.floor(Math.random() * 1000)}`;
@@ -16,8 +14,8 @@ export default function BoardPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="w-full h-full">
-      <h1>Board: {id}</h1>
-      <Canvas boardId={id} username={username} />
+      <h1>Board: {"cm3vorsbv0000wlg4h4kge4jb"}</h1>
+      <Canvas boardId={"cm3vorsbv0000wlg4h4kge4jb"} username={username} />
     </div>
   );
 }
