@@ -15,7 +15,12 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const expressApp = express();
   const server = createServer(expressApp);
-  const io = new SocketIOServer(server);
+  const io = new SocketIOServer(server, {
+    cors: {
+      origin: "*", // Adjust as needed for security
+      methods: ["GET", "POST"],
+    },
+  });
 
   io.on("connection", (socket: Socket) => {
     console.log("A user connected");
@@ -31,7 +36,8 @@ app.prepare().then(() => {
       console.log(`User left board ${boardId}`);
     });
 
-    socket.on("draw", async (boardId: string, data) => {
+    socket.on("draw", async (boardId: string, data: any) => {
+      // Updated type to any for DrawData
       try {
         // Save the stroke to the database
         await prisma.stroke.create({
@@ -53,7 +59,8 @@ app.prepare().then(() => {
       socket.to(boardId).emit("draw", data);
     });
 
-    socket.on("add-sticker", async (boardId: string, data) => {
+    socket.on("add-sticker", async (boardId: string, data: any) => {
+      // Updated type to any for StickerData
       try {
         // Save the sticker to the database
         await prisma.sticker.create({
@@ -75,6 +82,31 @@ app.prepare().then(() => {
 
       // Broadcast to other clients
       socket.to(boardId).emit("add-sticker", data);
+    });
+
+    // Handle sticker updates
+    socket.on("update-sticker", async (boardId: string, data: any) => {
+      // Added
+      try {
+        // Update the sticker in the database
+        await prisma.sticker.update({
+          where: { id: data.id },
+          data: {
+            x: data.x,
+            y: data.y,
+            width: data.width,
+            height: data.height,
+            rotation: data.rotation || 0,
+            // Update other fields as necessary
+          },
+        });
+      } catch (error) {
+        console.error("Error updating sticker:", error);
+        return;
+      }
+
+      // Broadcast the updated sticker to other clients
+      socket.to(boardId).emit("update-sticker", data);
     });
 
     socket.on("disconnect", () => {
