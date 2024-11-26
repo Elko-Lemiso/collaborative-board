@@ -14,8 +14,8 @@ export default function BoardPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="w-full h-full">
-      <h1>Board: {"cm3vorsbv0000wlg4h4kge4jb"}</h1>
-      <Canvas boardId={"cm3vorsbv0000wlg4h4kge4jb"} username={username} />
+      <h1>Board: {"cm3z2sokz0000cw7b5fmt114k"}</h1>
+      <Canvas boardId={"cm3z2sokz0000cw7b5fmt114k"} username={username} />
     </div>
   );
 }

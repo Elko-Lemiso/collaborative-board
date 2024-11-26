@@ -1,5 +1,4 @@
 // src/lib/utils/coordinateUtils.ts
-
 import { Transform, Point } from "@/lib/types/coordinate";
 import { CENTER_OFFSET } from "./constants";
 

@@ -6,7 +6,16 @@ export interface StickerData {
   y: number;
   width: number;
   height: number;
-  rotation: number;
-  createdAt?: string;
-  updatedAt?: string;
+  rotation?: number;
+}
+
+export interface LoadedSticker extends StickerData {
+  imageElement?: HTMLImageElement;
+}
+
+export interface StickerBounds {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }

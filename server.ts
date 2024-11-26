@@ -1,10 +1,9 @@
 // server.ts
-
-import express from "express";
 import { createServer } from "http";
 import next from "next";
 import { Server as SocketIOServer, Socket } from "socket.io";
 import { prisma } from "@/lib/prisma";
+import { parse } from "url";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const dev = process.env.NODE_ENV !== "production";
@@ -13,8 +12,11 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-  const expressApp = express();
-  const server = createServer(expressApp);
+  const server = createServer((req, res) => {
+    const parsedUrl = parse(req.url!, true);
+    handle(req, res, parsedUrl);
+  });
+
   const io = new SocketIOServer(server, {
     cors: {
       origin: "*", // Adjust as needed for security
@@ -44,20 +46,28 @@ app.prepare().then(() => {
     }
 
     socket.on("draw", async (boardId: string, data: DrawData) => {
-      // Updated type to any for DrawData
+      // Save the stroke to the database
+
+      console.log("Saving stroke to database");
+      console.log(data);
+      
       try {
-        // Save the stroke to the database
-        await prisma.stroke.create({
-          data: {
-            boardId: boardId,
-            fromX: data.from.x,
-            fromY: data.from.y,
-            toX: data.to.x,
-            toY: data.to.y,
-            color: data.color || "#000000", // Default color if not provided
-            width: data.width || 2, // Default width if not provided
-          },
-        });
+        await prisma.stroke
+          .create({
+            data: {
+              boardId: boardId,
+              fromX: data.from.x,
+              fromY: data.from.y,
+              toX: data.to.x,
+              toY: data.to.y,
+              color: data.color || "#000000",
+              width: data.width || 2,
+            },
+          })
+          .catch((error) => {
+            console.error("Error saving stroke:", error);
+          });
+
       } catch (error) {
         console.error("Error saving stroke:", error);
       }
@@ -146,11 +156,6 @@ app.prepare().then(() => {
     socket.on("disconnect", () => {
       console.log("A user disconnected");
     });
-  });
-
-  // Handle all HTTP requests through Next.js
-  expressApp.all("*", (req, res) => {
-    return handle(req, res);
   });
 
   // Start the server

@@ -1,162 +1,152 @@
-import React, { useRef, useState } from "react";
-import { Trash2, RotateCw } from "lucide-react";
+import React from "react";
+import { Transform } from "@/lib/types/canvas";
+import { StickerData } from "@/lib/types/sticker";
+import { Trash2 } from "lucide-react";
 
-interface SelectionBoxProps {
-  bounds: {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  };
-  rotation?: number;
+const HANDLE_SIZE = 8;
+const CENTER_OFFSET = 5000; // Matching the canvas config
+
+interface StickerSelectionBoxProps {
+  sticker: StickerData;
+  transform: Transform;
   onResize: (corner: string, initialBounds: any, e: React.PointerEvent) => void;
-  onRotate: (angle: number) => void;
-  onDelete?: () => void;
-  transform: {
-    scale: number;
-    x: number;
-    y: number;
-  };
+  onDelete: () => void;
 }
 
-export const StickerSelectionBox = ({
-  bounds,
-  rotation = 0,
-  onResize,
-  onRotate,
-  onDelete,
+export const StickerSelectionBox: React.FC<StickerSelectionBoxProps> = ({
+  sticker,
   transform,
-}: SelectionBoxProps) => {
-  const rotationHandle = useRef<HTMLDivElement>(null);
-  const [isRotating, setIsRotating] = useState(false);
+  onResize,
+  onDelete,
+}) => {
+  // Calculate screen coordinates
+  const screenX =
+    (sticker.x - CENTER_OFFSET - sticker.width / 2) * transform.scale +
+    transform.x;
+  const screenY =
+    (sticker.y - CENTER_OFFSET - sticker.height / 2) * transform.scale +
+    transform.y;
+  const screenWidth = sticker.width * transform.scale;
+  const screenHeight = sticker.height * transform.scale;
 
-  const handleRotateStart = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    setIsRotating(true);
-
-    const center = {
-      x: bounds.x + bounds.width / 2,
-      y: bounds.y + bounds.height / 2,
-    };
-
-    const startAngle = Math.atan2(
-      e.clientY - center.y,
-      e.clientX - center.x
-    ) * (180 / Math.PI);
-
-    const initialRotation = rotation;
-
-    const handleRotate = (moveEvent: MouseEvent) => {
-      const currentAngle = Math.atan2(
-        moveEvent.clientY - center.y,
-        moveEvent.clientX - center.x
-      ) * (180 / Math.PI);
-
-      let deltaAngle = currentAngle - startAngle;
-
-      // Snap to 15-degree increments if holding Shift
-      if (moveEvent.shiftKey) {
-        deltaAngle = Math.round(deltaAngle / 15) * 15;
-      }
-
-      const newRotation = (initialRotation + deltaAngle) % 360;
-      onRotate(newRotation);
-    };
-
-    const handleRotateEnd = () => {
-      setIsRotating(false);
-      window.removeEventListener('mousemove', handleRotate);
-      window.removeEventListener('mouseup', handleRotateEnd);
-    };
-
-    window.addEventListener('mousemove', handleRotate);
-    window.addEventListener('mouseup', handleRotateEnd);
-  };
-
-  // Convert bounds to screen coordinates
-  const screenBounds = {
-    x: bounds.x * transform.scale + transform.x,
-    y: bounds.y * transform.scale + transform.y,
-    width: bounds.width * transform.scale,
-    height: bounds.height * transform.scale,
+  const handleStyle: React.CSSProperties = {
+    width: HANDLE_SIZE,
+    height: HANDLE_SIZE,
+    backgroundColor: "white",
+    border: "1px solid #666",
+    position: "absolute",
+    borderRadius: "50%",
+    cursor: "pointer",
   };
 
   return (
     <div
       className="absolute pointer-events-none"
       style={{
-        transform: `translate(${bounds.x}px, ${bounds.y}px) rotate(${rotation}deg)`,
-        width: `${bounds.width}px`,
-        height: `${bounds.height}px`,
-        transformOrigin: "center center",
-        // Add cursor for dragging
-        cursor: 'move',
+        transform: `translate(${screenX}px, ${screenY}px) 
+                   rotate(${sticker.rotation || 0}deg)`,
+        width: screenWidth,
+        height: screenHeight,
       }}
     >
       {/* Selection border */}
-      <div className="absolute inset-0 border-2 border-blue-500" />
-
-      {/* Rotation handle */}
       <div
-        ref={rotationHandle}
-        className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 w-4 h-4 
-                   bg-white border-2 border-blue-500 rounded-full cursor-move pointer-events-auto
-                   hover:bg-blue-100"
-        onMouseDown={handleRotateStart}
+        className="absolute inset-0 border-2 border-blue-500"
+        style={{ backgroundColor: "rgba(66, 153, 225, 0.1)" }}
       />
 
-      {/* Control buttons */}
-      <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 flex gap-2 pointer-events-auto">
-        <button
-          className="p-2 bg-white rounded-full shadow-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          onClick={() => onRotate((rotation + 90) % 360)}
-          title="Rotate 90°"
-        >
-          <RotateCw className="w-4 h-4 text-gray-700" />
-        </button>
-        {onDelete && (
-          <button
-            className="p-2 bg-white rounded-full shadow-lg hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-            onClick={onDelete}
-            title="Delete sticker"
-          >
-            <Trash2 className="w-4 h-4 text-red-600" />
-          </button>
-        )}
-      </div>
-
       {/* Resize handles */}
-      {!isRotating && [
-        { position: "top-left", cursor: "nw-resize", top: -6, left: -6 },
-        { position: "top", cursor: "n-resize", top: -6, left: "50%", transform: "translateX(-50%)" },
-        { position: "top-right", cursor: "ne-resize", top: -6, right: -6 },
-        { position: "right", cursor: "e-resize", top: "50%", right: -6, transform: "translateY(-50%)" },
-        { position: "bottom-right", cursor: "se-resize", bottom: -6, right: -6 },
-        { position: "bottom", cursor: "s-resize", bottom: -6, left: "50%", transform: "translateX(-50%)" },
-        { position: "bottom-left", cursor: "sw-resize", bottom: -6, left: -6 },
-        { position: "left", cursor: "w-resize", top: "50%", left: -6, transform: "translateY(-50%)" },
-      ].map((handle) => (
-        <div
-          key={handle.position}
-          className="absolute w-3 h-3 bg-white border-2 border-blue-500 pointer-events-auto hover:bg-blue-100"
-          style={{
-            cursor: handle.cursor,
-            top: handle.top,
-            left: handle.left,
-            right: handle.right,
-            bottom: handle.bottom,
-            transform: handle.transform,
-            zIndex: 10,
-          }}
-          onPointerDown={(e) => {
-            e.stopPropagation();
-            onResize(handle.position, bounds, e);
-          }}
-        />
-      ))}
+      {["nw", "n", "ne", "e", "se", "s", "sw", "w"].map((position) => {
+        const handlePosition: React.CSSProperties = {
+          ...handleStyle,
+          ...getHandlePosition(
+            position,
+            screenWidth,
+            screenHeight,
+            HANDLE_SIZE
+          ),
+        };
+
+        return (
+          <div
+            key={position}
+            className="pointer-events-auto"
+            style={handlePosition}
+            onPointerDown={(e) => {
+              e.stopPropagation();
+              onResize(
+                position,
+                {
+                  x: screenX,
+                  y: screenY,
+                  width: screenWidth,
+                  height: screenHeight,
+                },
+                e
+              );
+            }}
+          />
+        );
+      })}
+
+      {/* Delete button */}
+      <button
+        className="absolute -top-8 right-0 p-1 bg-red-500 rounded-full text-white 
+                   pointer-events-auto hover:bg-red-600 transition-colors"
+        onClick={onDelete}
+      >
+        <Trash2 size={16} />
+      </button>
     </div>
   );
 };
+
+// Helper function to calculate handle positions
+function getHandlePosition(
+  position: string,
+  width: number,
+  height: number,
+  handleSize: number
+): React.CSSProperties {
+  const offset = -handleSize / 2;
+  const center = handleSize / 2;
+
+  switch (position) {
+    case "nw":
+      return { top: offset, left: offset, cursor: "nw-resize" };
+    case "n":
+      return {
+        top: offset,
+        left: `calc(50% - ${center}px)`,
+        cursor: "n-resize",
+      };
+    case "ne":
+      return { top: offset, right: offset, cursor: "ne-resize" };
+    case "e":
+      return {
+        top: `calc(50% - ${center}px)`,
+        right: offset,
+        cursor: "e-resize",
+      };
+    case "se":
+      return { bottom: offset, right: offset, cursor: "se-resize" };
+    case "s":
+      return {
+        bottom: offset,
+        left: `calc(50% - ${center}px)`,
+        cursor: "s-resize",
+      };
+    case "sw":
+      return { bottom: offset, left: offset, cursor: "sw-resize" };
+    case "w":
+      return {
+        top: `calc(50% - ${center}px)`,
+        left: offset,
+        cursor: "w-resize",
+      };
+    default:
+      return {};
+  }
+}
 
 export default StickerSelectionBox;

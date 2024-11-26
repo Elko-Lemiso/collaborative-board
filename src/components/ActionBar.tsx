@@ -1,48 +1,43 @@
-// src/components/ActionBar.tsx
-
 import React from "react";
-import { FaPen, FaStickyNote, FaHandPaper } from "react-icons/fa";
+import { Pencil, Move, Pointer, Image } from "lucide-react";
+import { CanvasMode } from "@/lib/types/canvas";
 
 interface ActionBarProps {
-  mode: string;
-  setMode: (mode: string) => void;
+  mode: CanvasMode;
+  setMode: (mode: CanvasMode) => void;
 }
 
-const ActionBar: React.FC<ActionBarProps> = ({ mode, setMode }) => {
+export const ActionBar: React.FC<ActionBarProps> = ({ mode, setMode }) => {
+  const tools = [
+    { id: "select" as CanvasMode, icon: Pointer, label: "Select" },
+    { id: "draw" as CanvasMode, icon: Pencil, label: "Draw" },
+    { id: "move" as CanvasMode, icon: Move, label: "Move" },
+    { id: "sticker" as CanvasMode, icon: Image, label: "Add Sticker" },
+  ];
+
   return (
-    <div className="flex gap-2">
-      <button
-        onClick={() => setMode("draw")}
-        className={`px-4 py-2 rounded-md ${
-          mode === "draw" ? "bg-blue-500 text-white" : "bg-gray-200"
-        }`}
-      >
-        Draw
-      </button>
-      <button
-        onClick={() => setMode("move")}
-        className={`px-4 py-2 rounded-md ${
-          mode === "move" ? "bg-blue-500 text-white" : "bg-gray-200"
-        }`}
-      >
-        Move
-      </button>
-      <button
-        onClick={() => setMode("select")}
-        className={`px-4 py-2 rounded-md ${
-          mode === "select" ? "bg-blue-500 text-white" : "bg-gray-200"
-        }`}
-      >
-        Select
-      </button>
-      <button
-        onClick={() => setMode("sticker")}
-        className={`px-4 py-2 rounded-md ${
-          mode === "sticker" ? "bg-blue-500 text-white" : "bg-gray-200"
-        }`}
-      >
-        Sticker
-      </button>
+    <div
+      className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center 
+                    gap-2 bg-white rounded-lg shadow-md p-2 border border-gray-200 z-10"
+    >
+      {tools.map((tool) => {
+        const Icon = tool.icon;
+        return (
+          <button
+            key={tool.id}
+            className={`p-2 rounded-lg transition-colors
+              ${
+                mode === tool.id
+                  ? "bg-blue-100 text-blue-600"
+                  : "hover:bg-gray-100 text-gray-700"
+              }`}
+            onClick={() => setMode(tool.id)}
+            title={tool.label}
+          >
+            <Icon size={20} />
+          </button>
+        );
+      })}
     </div>
   );
 };
