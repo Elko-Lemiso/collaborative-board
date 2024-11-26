@@ -9,7 +9,7 @@ export async function GET(
   request: NextRequest,
   context: { params: { boardId: string } }
 ) {
-  const { boardId } = context.params;
+  const { boardId } = await context.params;
 
   try {
     console.log("Fetching stickers for board:", boardId);

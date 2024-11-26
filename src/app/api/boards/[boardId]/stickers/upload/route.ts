@@ -16,8 +16,8 @@ export async function POST(
   request: Request,
   { params }: { params: { boardId: string } }
 ) {
-  const { boardId } = params;
-
+  const req = await params;
+  const boardId = req.boardId;
   console.log("Uploading sticker to board:", boardId);
 
   try {
