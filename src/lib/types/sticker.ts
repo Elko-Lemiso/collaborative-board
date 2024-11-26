@@ -6,7 +6,7 @@ export interface StickerData {
   y: number;
   width: number;
   height: number;
-  rotation?: number; // Could be cool at some point I guess
+  rotation: number;
   createdAt?: string;
   updatedAt?: string;
 }

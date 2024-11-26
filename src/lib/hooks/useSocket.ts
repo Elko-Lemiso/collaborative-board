@@ -10,10 +10,16 @@ interface SocketHook {
   leaveBoard: (boardId: string) => void;
   drawOnBoard: (boardId: string, data: DrawData) => void;
   addSticker: (boardId: string, data: StickerData) => void;
+  updateSticker: (boardId: string, data: StickerData) => void;
+  deleteSticker: (boardId: string, stickerId: string) => void; // Added
   onDraw: (callback: (data: DrawData) => void) => void;
   offDraw: (callback: (data: DrawData) => void) => void;
   onSticker: (callback: (data: StickerData) => void) => void;
   offSticker: (callback: (data: StickerData) => void) => void;
+  onUpdateSticker: (callback: (data: StickerData) => void) => void;
+  offUpdateSticker: (callback: (data: StickerData) => void) => void;
+  onDeleteSticker: (callback: (stickerId: string) => void) => void; // Added
+  offDeleteSticker: (callback: (stickerId: string) => void) => void; // Added
   onUserJoined: (callback: (data: { username: string }) => void) => void;
   offUserJoined: (callback: (data: { username: string }) => void) => void;
   onUserLeft: (callback: (data: { username: string }) => void) => void;
@@ -57,6 +63,15 @@ export const useSocket = (): SocketHook => {
     socket.emit("add-sticker", boardId, data);
   };
 
+  const updateSticker = (boardId: string, data: StickerData) => {
+    socket.emit("update-sticker", boardId, data);
+  };
+
+  const deleteSticker = (boardId: string, stickerId: string) => {
+    // Added
+    socket.emit("delete-sticker", boardId, stickerId);
+  };
+
   // Adding event listeners
   const onDraw = (callback: (data: DrawData) => void) => {
     socket.on("draw", callback);
@@ -64,6 +79,15 @@ export const useSocket = (): SocketHook => {
 
   const onSticker = (callback: (data: StickerData) => void) => {
     socket.on("add-sticker", callback);
+  };
+
+  const onUpdateSticker = (callback: (data: StickerData) => void) => {
+    socket.on("update-sticker", callback);
+  };
+
+  const onDeleteSticker = (callback: (stickerId: string) => void) => {
+    // Added
+    socket.on("delete-sticker", callback);
   };
 
   const onUserJoined = (callback: (data: { username: string }) => void) => {
@@ -83,6 +107,15 @@ export const useSocket = (): SocketHook => {
     socket.off("add-sticker", callback);
   };
 
+  const offUpdateSticker = (callback: (data: StickerData) => void) => {
+    socket.off("update-sticker", callback);
+  };
+
+  const offDeleteSticker = (callback: (stickerId: string) => void) => {
+    // Added
+    socket.off("delete-sticker", callback);
+  };
+
   const offUserJoined = (callback: (data: { username: string }) => void) => {
     socket.off("user-joined", callback);
   };
@@ -100,10 +133,16 @@ export const useSocket = (): SocketHook => {
     leaveBoard,
     drawOnBoard,
     addSticker,
+    updateSticker,
+    deleteSticker, // Added
     onDraw,
     offDraw,
     onSticker,
     offSticker,
+    onUpdateSticker,
+    offUpdateSticker,
+    onDeleteSticker, // Added
+    offDeleteSticker, // Added
     onUserJoined,
     offUserJoined,
     onUserLeft,

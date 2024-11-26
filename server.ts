@@ -36,7 +36,14 @@ app.prepare().then(() => {
       console.log(`User left board ${boardId}`);
     });
 
-    socket.on("draw", async (boardId: string, data: any) => {
+    interface DrawData {
+      from: { x: number; y: number };
+      to: { x: number; y: number };
+      color?: string;
+      width?: number;
+    }
+
+    socket.on("draw", async (boardId: string, data: DrawData) => {
       // Updated type to any for DrawData
       try {
         // Save the stroke to the database
@@ -59,7 +66,17 @@ app.prepare().then(() => {
       socket.to(boardId).emit("draw", data);
     });
 
-    socket.on("add-sticker", async (boardId: string, data: any) => {
+    interface StickerData {
+      id: string;
+      imageUrl: string;
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+      rotation?: number;
+    }
+
+    socket.on("add-sticker", async (boardId: string, data: StickerData) => {
       // Updated type to any for StickerData
       try {
         // Save the sticker to the database
@@ -85,8 +102,7 @@ app.prepare().then(() => {
     });
 
     // Handle sticker updates
-    socket.on("update-sticker", async (boardId: string, data: any) => {
-      // Added
+    socket.on("update-sticker", async (boardId: string, data: StickerData) => {
       try {
         // Update the sticker in the database
         await prisma.sticker.update({
@@ -107,6 +123,24 @@ app.prepare().then(() => {
 
       // Broadcast the updated sticker to other clients
       socket.to(boardId).emit("update-sticker", data);
+    });
+
+    // Handle sticker deletions
+    socket.on("delete-sticker", async (boardId: string, stickerId: string) => {
+      // Added
+      try {
+        // Delete the sticker from the database
+        await prisma.sticker.delete({
+          where: { id: stickerId },
+        });
+      } catch (error) {
+        console.error("Error deleting sticker:", error);
+        return;
+      }
+
+      // Broadcast the deletion to other clients
+      socket.to(boardId).emit("delete-sticker", stickerId);
+      console.log(`Sticker ${stickerId} deleted from board ${boardId}`);
     });
 
     socket.on("disconnect", () => {
