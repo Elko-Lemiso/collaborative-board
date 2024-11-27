@@ -1,11 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Error() {
   return (
     <>
       <main className="relative isolate min-h-full">
-        <Image
+        <img
           alt=""
           src="https://images.pexels.com/photos/65435/pexels-photo-65435.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           className="absolute inset-0 -z-10 size-full object-cover object-top"
