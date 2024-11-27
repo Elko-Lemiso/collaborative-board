@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import useCanvas from "@/lib/hooks/useCanvas";
 import ActionBar from "@/components/Canvas/ActionBar";
 import { StickerSelectionBox } from "./StickerSelectionBox";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Pencil, Move, Pointer, Image, Eraser, TextQuoteIcon, Shapes } from "lucide-react";
+import { Pencil, Move, Pointer, Image } from "lucide-react";
 import { CanvasMode } from "@/lib/types/canvas";
 
 interface ActionBarProps {

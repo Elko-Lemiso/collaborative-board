@@ -1,17 +1,8 @@
-// src/app/api/boards/[boardId]/stickers/upload/route.ts
-
 import { NextResponse } from "next/server";
 import path from "path";
 import { writeFile, mkdir } from "fs/promises";
 import { v4 as uuidv4 } from "uuid";
 
-/**
- * Handles POST requests to upload a sticker.
- *
- * @param request - The incoming request object.
- * @param context - Contains route parameters.
- * @returns A JSON response with the image URL or an error message.
- */
 export async function POST(
   request: Request,
   { params }: { params: { boardId: string } }
@@ -34,7 +25,13 @@ export async function POST(
     }
 
     // Validate file type
-    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+      "image/svg+xml",
+    ];
     if (!allowedTypes.includes(file.type)) {
       return NextResponse.json(
         { error: "Invalid file type. Only JPEG, PNG, and GIF are allowed." },
@@ -62,10 +59,6 @@ export async function POST(
 
     // Construct the image URL
     const imageUrl = `/uploads/stickers/${uniqueFilename}`;
-
-    // Optionally, save sticker data to the database here
-    // For example:
-    // await prisma.sticker.create({ data: { ... } });
 
     // Return the image URL in the response
     return NextResponse.json({ imageUrl }, { status: 201 });

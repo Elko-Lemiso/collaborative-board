@@ -9,7 +9,7 @@ export interface User {
 }
 
 export interface Board {
-  _count: any;
+  _count: number;
   id: string;
   name: string;
   updatedAt: Date;

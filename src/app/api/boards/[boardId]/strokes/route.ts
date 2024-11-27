@@ -1,5 +1,3 @@
-// app/api/boards/[boardId]/strokes/route.ts
-
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma"; // Adjust the import if needed
 

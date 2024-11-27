@@ -1,4 +1,3 @@
-// hooks/useSocket.ts
 import { useEffect, useRef, useState, useCallback } from "react";
 import { io, Socket } from "socket.io-client";
 import { DrawData } from "@/lib/types/canvas";
@@ -9,15 +8,6 @@ export const useSocket = (): SocketHook => {
   const socketRef = useRef<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [joinError, setJoinError] = useState<string | null>(null);
-
-  // Initialize the socket connection only once per hook instance
-  if (!socketRef.current) {
-    socketRef.current = io(); // You can pass options here if needed
-  }
-
-  console.log("Socket initialized");
-  console.log(socketRef.current);
-  console.log(socketRef.current?.connected);
 
   useEffect(() => {
     const socketOptions = {
@@ -79,154 +69,230 @@ export const useSocket = (): SocketHook => {
     };
   }, []);
 
-  const socket = socketRef.current;
+  // Helper function to safely get the socket
+  const getSocket = (): Socket => {
+    if (!socketRef.current) {
+      throw new Error("Socket not initialized");
+    }
+    return socketRef.current;
+  };
 
   // Socket event handlers
   const joinBoard = useCallback(
     (boardId: string, username: string) => {
-      if (!isConnected) {
-        console.log("Socket not connected, attempting to reconnect...");
-        socket.connect();
+      try {
+        const socket = getSocket();
+        if (!isConnected) {
+          console.log("Socket not connected, attempting to reconnect...");
+          socket.connect();
+        }
+        console.log(`Joining board ${boardId} as ${username}`);
+        socket.emit("join-board", { boardId, username });
+      } catch (error) {
+        console.error(error);
       }
-      console.log(`Joining board ${boardId} as ${username}`);
-      socket.emit("join-board", { boardId, username });
     },
-    [socket, isConnected]
+    [isConnected]
   );
 
-  const leaveBoard = useCallback(
-    (boardId: string) => {
+  const leaveBoard = useCallback((boardId: string) => {
+    try {
+      const socket = getSocket();
       socket.emit("leave-board", { boardId });
-    },
-    [socket]
-  );
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
-  const drawOnBoard = useCallback(
-    (boardId: string, data: DrawData) => {
+  const drawOnBoard = useCallback((boardId: string, data: DrawData) => {
+    try {
+      const socket = getSocket();
       socket.emit("draw", boardId, data);
-    },
-    [socket]
-  );
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
-  const addSticker = useCallback(
-    (boardId: string, data: StickerData) => {
+  const addSticker = useCallback((boardId: string, data: StickerData) => {
+    try {
+      const socket = getSocket();
       socket.emit("add-sticker", boardId, data);
-    },
-    [socket]
-  );
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
-  const updateSticker = useCallback(
-    (boardId: string, data: StickerData) => {
+  const updateSticker = useCallback((boardId: string, data: StickerData) => {
+    try {
+      const socket = getSocket();
       socket.emit("update-sticker", boardId, data);
-    },
-    [socket]
-  );
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
-  const deleteSticker = useCallback(
-    (boardId: string, stickerId: string) => {
+  const deleteSticker = useCallback((boardId: string, stickerId: string) => {
+    try {
+      const socket = getSocket();
       socket.emit("delete-sticker", boardId, stickerId);
-    },
-    [socket]
-  );
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   // Adding event listeners
-  const onDraw = useCallback(
-    (callback: (data: DrawData) => void) => {
+  const onDraw = useCallback((callback: (data: DrawData) => void) => {
+    try {
+      const socket = getSocket();
       socket.on("draw", callback);
-    },
-    [socket]
-  );
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
-  const onSticker = useCallback(
-    (callback: (data: StickerData) => void) => {
+  const onSticker = useCallback((callback: (data: StickerData) => void) => {
+    try {
+      const socket = getSocket();
       socket.on("add-sticker", callback);
-    },
-    [socket]
-  );
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   const onUpdateSticker = useCallback(
     (callback: (data: StickerData) => void) => {
-      socket.on("update-sticker", callback);
+      try {
+        const socket = getSocket();
+        socket.on("update-sticker", callback);
+      } catch (error) {
+        console.error(error);
+      }
     },
-    [socket]
+    []
   );
 
   const onDeleteSticker = useCallback(
     (callback: (stickerId: string) => void) => {
-      socket.on("delete-sticker", callback);
+      try {
+        const socket = getSocket();
+        socket.on("delete-sticker", callback);
+      } catch (error) {
+        console.error(error);
+      }
     },
-    [socket]
+    []
   );
 
   const onUserJoined = useCallback(
     (callback: (data: { username: string }) => void) => {
-      socket.on("user-joined", callback);
+      try {
+        const socket = getSocket();
+        socket.on("user-joined", callback);
+      } catch (error) {
+        console.error(error);
+      }
     },
-    [socket]
+    []
   );
 
   const onUserLeft = useCallback(
     (callback: (data: { username: string }) => void) => {
-      socket.on("user-left", callback);
+      try {
+        const socket = getSocket();
+        socket.on("user-left", callback);
+      } catch (error) {
+        console.error(error);
+      }
     },
-    [socket]
+    []
   );
 
   // Removing event listeners
-  const offDraw = useCallback(
-    (callback: (data: DrawData) => void) => {
+  const offDraw = useCallback((callback: (data: DrawData) => void) => {
+    try {
+      const socket = getSocket();
       socket.off("draw", callback);
-    },
-    [socket]
-  );
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
-  const offSticker = useCallback(
-    (callback: (data: StickerData) => void) => {
+  const offSticker = useCallback((callback: (data: StickerData) => void) => {
+    try {
+      const socket = getSocket();
       socket.off("add-sticker", callback);
-    },
-    [socket]
-  );
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   const offUpdateSticker = useCallback(
     (callback: (data: StickerData) => void) => {
-      socket.off("update-sticker", callback);
+      try {
+        const socket = getSocket();
+        socket.off("update-sticker", callback);
+      } catch (error) {
+        console.error(error);
+      }
     },
-    [socket]
+    []
   );
 
   const offDeleteSticker = useCallback(
     (callback: (stickerId: string) => void) => {
-      socket.off("delete-sticker", callback);
+      try {
+        const socket = getSocket();
+        socket.off("delete-sticker", callback);
+      } catch (error) {
+        console.error(error);
+      }
     },
-    [socket]
+    []
   );
 
   const offUserJoined = useCallback(
     (callback: (data: { username: string }) => void) => {
-      socket.off("user-update", callback);
+      try {
+        const socket = getSocket();
+        socket.off("user-joined", callback);
+      } catch (error) {
+        console.error(error);
+      }
     },
-    [socket]
+    []
   );
 
   const offUserLeft = useCallback(
     (callback: (data: { username: string }) => void) => {
-      socket.off("user-left", callback);
+      try {
+        const socket = getSocket();
+        socket.off("user-left", callback);
+      } catch (error) {
+        console.error(error);
+      }
     },
-    [socket]
+    []
   );
 
-  const onUsersUpdate = useCallback(
-    (callback: (users: string[]) => void) => {
+  const onUsersUpdate = useCallback((callback: (users: string[]) => void) => {
+    try {
+      const socket = getSocket();
       socket.on("users-update", callback);
-    },
-    [socket]
-  );
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   const offUsersUpdate = useCallback(
     (callback: (users: string[]) => void) => {
-      socket.off("users-update", callback);
+      try {
+        const socket = getSocket();
+        socket.off("users-update", callback);
+      } catch (error) {
+        console.error(error);
+      }
     },
-    [socket]
+    []
   );
 
   return {

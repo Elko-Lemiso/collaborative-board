@@ -1,5 +1,3 @@
-// src/app/api/boards/[boardId]/stickers/route.ts
-
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma"; // Ensure correct import path

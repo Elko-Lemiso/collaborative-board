@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -139,7 +139,7 @@ export const UsernameForm = () => {
         </div>
       </div>
       <div className="relative hidden w-0 flex-1 lg:block">
-        <img
+        <Image
           alt="Collaboration background"
           src="https://images.pexels.com/photos/9311627/pexels-photo-9311627.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           className="absolute inset-0 h-full w-full object-cover"

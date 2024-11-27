@@ -1,4 +1,3 @@
-// hooks/useCanvas.ts
 import { useEffect, useRef, useCallback, useState } from "react";
 import { useSocket } from "@/lib/hooks/useSocket";
 import { useTransform } from "./useTransform";
@@ -22,7 +21,6 @@ export const useCanvas = (
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rendererRef = useRef<CanvasRenderer | null>(null);
   const isInitialized = useRef(false);
-  const [isReady, setIsReady] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const socket = useSocket();
   const [connectedUsers, setConnectedUsers] = useState<string[]>([]);
@@ -93,9 +91,6 @@ export const useCanvas = (
 
       // Wait a short moment for socket joining to complete
       await new Promise((resolve) => setTimeout(resolve, 100));
-
-      setIsReady(true);
-      console.log("Canvas ready for interaction");
     };
 
     initializeBoard();
@@ -109,9 +104,6 @@ export const useCanvas = (
         socket.joinBoard(boardId, username);
 
         await new Promise((resolve) => setTimeout(resolve, 100));
-
-        setIsReady(true);
-        console.log("Canvas ready for interaction after reconnection");
       };
 
       initializeBoard();

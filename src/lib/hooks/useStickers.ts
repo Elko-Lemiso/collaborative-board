@@ -1,8 +1,9 @@
 import { useCallback, useRef, useState, useEffect } from "react";
-import { Transform, Point, CanvasConfig } from "../types/canvas";
+import { Point } from "../types/canvas";
 import { StickerData, LoadedSticker } from "../types/sticker";
-import { SocketHook } from "@/lib/types";
 import { UseStickersProps } from "@/lib/types/hooks";
+
+// Custom hook for managing stickers on a canvas
 export function useStickers({
   boardId,
   transform,
@@ -11,23 +12,36 @@ export function useStickers({
   canvasRef,
   onUpdate,
 }: UseStickersProps) {
+  // State for the currently selected sticker
   const [selectedSticker, setSelectedSticker] = useState<StickerData | null>(
     null
   );
+
+  // State to indicate if a sticker is being resized
   const [isResizing, setIsResizing] = useState(false);
+
+  // Ref to store all loaded stickers
   const loadedStickersRef = useRef<Map<string, LoadedSticker>>(new Map());
+
+  // Ref to track if a sticker is being dragged
   const isDragging = useRef(false);
+
+  // Ref for drag start position
   const dragStartPos = useRef<Point>({ x: 0, y: 0 });
+
+  // Ref for original sticker position before dragging
   const originalStickerPos = useRef<Point>({ x: 0, y: 0 });
 
-  // Load initial stickers
+  // Load initial stickers when the component mounts
   useEffect(() => {
     const loadInitialStickers = async () => {
       try {
         const response = await fetch(`/api/boards/${boardId}/stickers`);
         if (!response.ok) return;
         const stickers = await response.json();
+        // Load images for all stickers
         await Promise.all(stickers.map(loadStickerImage));
+        // Request a canvas update
         if (onUpdate) requestAnimationFrame(onUpdate);
       } catch (error) {
         console.error("Failed to load stickers:", error);
@@ -37,6 +51,7 @@ export function useStickers({
     loadInitialStickers();
   }, [boardId]);
 
+  // Function to load a sticker image
   const loadStickerImage = useCallback(
     async (sticker: StickerData): Promise<LoadedSticker> => {
       return new Promise((resolve) => {
@@ -54,7 +69,7 @@ export function useStickers({
 
         image.onerror = () => {
           console.error(`Failed to load sticker image: ${sticker.imageUrl}`);
-          resolve(sticker);
+          resolve(sticker as LoadedSticker);
         };
 
         image.src = sticker.imageUrl;
@@ -62,13 +77,16 @@ export function useStickers({
     },
     []
   );
-  // Socket event handlers
+
+  // Handle socket events related to stickers
   useEffect(() => {
+    // When a new sticker is added
     const handleNewSticker = async (sticker: StickerData) => {
       await loadStickerImage(sticker);
       if (onUpdate) requestAnimationFrame(onUpdate);
     };
 
+    // When a sticker is updated
     const handleUpdateSticker = (sticker: StickerData) => {
       const existing = loadedStickersRef.current.get(sticker.id);
       if (existing) {
@@ -83,6 +101,7 @@ export function useStickers({
       }
     };
 
+    // When a sticker is deleted
     const handleDeleteSticker = (stickerId: string) => {
       loadedStickersRef.current.delete(stickerId);
       if (selectedSticker?.id === stickerId) {
@@ -91,10 +110,12 @@ export function useStickers({
       if (onUpdate) requestAnimationFrame(onUpdate);
     };
 
+    // Register socket event handlers
     socket.onSticker(handleNewSticker);
     socket.onUpdateSticker(handleUpdateSticker);
     socket.onDeleteSticker(handleDeleteSticker);
 
+    // Cleanup on unmount
     return () => {
       socket.offSticker(handleNewSticker);
       socket.offUpdateSticker(handleUpdateSticker);
@@ -102,6 +123,7 @@ export function useStickers({
     };
   }, [socket, selectedSticker, onUpdate, loadStickerImage]);
 
+  // Convert screen coordinates to canvas coordinates
   const screenToCanvas = useCallback(
     (screenX: number, screenY: number) => {
       const rect = canvasRef.current?.getBoundingClientRect();
@@ -119,6 +141,7 @@ export function useStickers({
     [canvasRef, transform, config.CENTER_OFFSET]
   );
 
+  // Handle the start of sticker dragging
   const handleStickerDragStart = useCallback(
     (e: React.MouseEvent) => {
       if (!selectedSticker || isResizing || e.button !== 0) return;
@@ -126,6 +149,7 @@ export function useStickers({
       e.stopPropagation();
       isDragging.current = true;
 
+      // Get initial drag position
       const canvasPoint = screenToCanvas(e.clientX, e.clientY);
       dragStartPos.current = canvasPoint;
       originalStickerPos.current = {
@@ -133,6 +157,7 @@ export function useStickers({
         y: selectedSticker.y,
       };
 
+      // Handle dragging movement
       const handleDragMove = (moveEvent: MouseEvent) => {
         if (!selectedSticker || !isDragging.current) return;
 
@@ -149,7 +174,7 @@ export function useStickers({
           y: originalStickerPos.current.y + dy,
         };
 
-        // Update local state
+        // Update local sticker state
         const existingSticker = loadedStickersRef.current.get(
           selectedSticker.id
         );
@@ -160,26 +185,27 @@ export function useStickers({
           });
         }
 
-        // Update selected sticker
+        // Update the selected sticker
         setSelectedSticker(updatedSticker);
 
-        // Emit socket event
+        // Emit update to server
         socket.updateSticker(boardId, updatedSticker);
 
+        // Request canvas update
         if (onUpdate) requestAnimationFrame(onUpdate);
       };
 
+      // Handle the end of dragging
       const handleDragEnd = () => {
         if (!selectedSticker) return;
 
         isDragging.current = false;
 
-        // Get final position from local state
+        // Ensure the final position is sent to the server
         const finalSticker = loadedStickersRef.current.get(selectedSticker.id);
         if (finalSticker) {
-          // Ensure one final update is sent
           socket.updateSticker(boardId, finalSticker);
-          // Make sure selected sticker reflects final position
+          setSelectedSticker(finalSticker);
         }
 
         if (onUpdate) requestAnimationFrame(onUpdate);
@@ -187,12 +213,14 @@ export function useStickers({
         window.removeEventListener("mouseup", handleDragEnd);
       };
 
+      // Register event listeners
       window.addEventListener("mousemove", handleDragMove);
       window.addEventListener("mouseup", handleDragEnd);
     },
     [selectedSticker, isResizing, screenToCanvas, boardId, socket, onUpdate]
   );
 
+  // Handle clicks on the canvas to select stickers
   const handleCanvasClick = useCallback(
     (e: React.MouseEvent) => {
       if (isResizing || isDragging.current) return;
@@ -200,7 +228,7 @@ export function useStickers({
       const point = screenToCanvas(e.clientX, e.clientY);
       let clickedSticker: StickerData | null = null;
 
-      // Try to find a sticker under the click point
+      // Iterate through stickers to find if one was clicked
       const stickers = Array.from(loadedStickersRef.current.values()).reverse();
 
       for (const sticker of stickers) {
@@ -209,6 +237,7 @@ export function useStickers({
           y: sticker.y,
         };
 
+        // Adjust for rotation
         const rotation = sticker.rotation || 0;
         const rad = (rotation * Math.PI) / 180;
         const cos = Math.cos(-rad);
@@ -217,9 +246,11 @@ export function useStickers({
         const dx = point.x - stickerCenter.x;
         const dy = point.y - stickerCenter.y;
 
+        // Rotate point to match sticker's coordinate system
         const rotatedX = dx * cos - dy * sin;
         const rotatedY = dx * sin + dy * cos;
 
+        // Check if the point is within the sticker's bounds
         if (
           Math.abs(rotatedX) <= sticker.width / 2 &&
           Math.abs(rotatedY) <= sticker.height / 2
@@ -229,10 +260,13 @@ export function useStickers({
         }
       }
 
+      // Set the clicked sticker as selected
       setSelectedSticker(clickedSticker);
     },
     [isResizing, screenToCanvas]
   );
+
+  // Handle sticker resizing
   const handleStickerResize = useCallback(
     (
       corner: string,
@@ -257,6 +291,7 @@ export function useStickers({
 
         const newBounds = { ...initialSticker };
 
+        // Adjust size based on the corner being dragged
         switch (corner) {
           case "nw":
             newBounds.width = Math.max(50, initialSticker.width - dx);
@@ -300,13 +335,17 @@ export function useStickers({
             break;
         }
 
+        // Update the sticker in local state
         loadedStickersRef.current.set(selectedSticker.id, {
           ...loadedStickersRef.current.get(selectedSticker.id)!,
           ...newBounds,
         });
 
+        // Emit update to server
         socket.updateSticker(boardId, newBounds);
+        // Update the selected sticker
         setSelectedSticker(newBounds);
+        // Request canvas update
         if (onUpdate) requestAnimationFrame(onUpdate);
       };
 
@@ -323,12 +362,14 @@ export function useStickers({
         window.removeEventListener("mouseup", handleUp);
       };
 
+      // Register event listeners
       window.addEventListener("mousemove", handleMove);
       window.addEventListener("mouseup", handleUp);
     },
     [selectedSticker, screenToCanvas, boardId, socket, onUpdate]
   );
 
+  // Add a new sticker to the canvas
   const addSticker = useCallback(
     async (e: React.MouseEvent) => {
       try {
@@ -348,9 +389,13 @@ export function useStickers({
           rotation: 0,
         };
 
+        // Load the sticker image
         await loadStickerImage(newSticker);
+        // Emit add sticker event to server
         socket.addSticker(boardId, newSticker);
+        // Set the new sticker as selected
         setSelectedSticker(newSticker);
+        // Request canvas update
         if (onUpdate) requestAnimationFrame(onUpdate);
       } catch (error) {
         console.error("Error adding sticker:", error);
@@ -359,12 +404,17 @@ export function useStickers({
     [boardId, screenToCanvas, loadStickerImage, socket, onUpdate]
   );
 
+  // Delete the selected sticker
   const handleDeleteSticker = useCallback(() => {
     if (!selectedSticker) return;
 
+    // Remove from local state
     loadedStickersRef.current.delete(selectedSticker.id);
+    // Emit delete event to server
     socket.deleteSticker(boardId, selectedSticker.id);
+    // Clear selected sticker
     setSelectedSticker(null);
+    // Request canvas update
     if (onUpdate) requestAnimationFrame(onUpdate);
   }, [selectedSticker, boardId, socket, onUpdate]);
 
@@ -382,11 +432,12 @@ export function useStickers({
   };
 }
 
-// Helper functions
+// Helper function to generate a unique ID
 function generateUniqueId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 }
 
+// Helper function to get the sticker image URL from the user
 async function getStickerImageUrl(boardId: string): Promise<string | null> {
   return new Promise((resolve) => {
     const input = document.createElement("input");
@@ -401,12 +452,14 @@ async function getStickerImageUrl(boardId: string): Promise<string | null> {
       }
 
       try {
+        // Check file size (max 5MB)
         if (file.size > 5 * 1024 * 1024) {
           console.error("File too large (max 5MB)");
           resolve(null);
           return;
         }
 
+        // Check file type
         if (!file.type.startsWith("image/")) {
           console.error("Invalid file type");
           resolve(null);
@@ -416,6 +469,7 @@ async function getStickerImageUrl(boardId: string): Promise<string | null> {
         const formData = new FormData();
         formData.append("sticker", file);
 
+        // Upload the image to the server
         const response = await fetch(`/api/boards/${boardId}/stickers/upload`, {
           method: "POST",
           body: formData,
@@ -433,6 +487,7 @@ async function getStickerImageUrl(boardId: string): Promise<string | null> {
       }
     };
 
+    // Trigger file selection dialog
     input.click();
   });
 }

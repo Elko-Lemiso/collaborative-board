@@ -102,36 +102,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </div>
               {/* Mobile sidebar content */}
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2">
-                {/* Add your mobile sidebar content here */}
+                {/* Add mobile sidebar content here */}
               </div>
             </div>
           </div>
         </div>
       )}
 
-      <div className="xl:pl-72">
-        {/* Top header */}
-        <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-          <button
-            type="button"
-            className="-m-2.5 p-2.5 text-gray-700 xl:hidden hover:bg-gray-100 rounded-md"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <span className="sr-only">Open sidebar</span>
-            <MenuIcon className="h-5 w-5" aria-hidden="true" />
-          </button>
-
-          {/* Separator */}
-          <div className="h-6 w-px bg-gray-200 xl:hidden" aria-hidden="true" />
-
-          <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-            <div className="flex items-center gap-x-4 lg:gap-x-6">
-              {/* Profile dropdown can go here */}
-            </div>
-          </div>
-        </div>
-
-        {/* Main content */}
+      <div className="xl:ml-72 xl:mr-0 xl:pl-0 xl:pr-0">
         <main className="px-4 py-8 sm:px-6 lg:px-8 bg-white min-h-screen">
           {children}
         </main>

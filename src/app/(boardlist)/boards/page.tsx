@@ -7,7 +7,7 @@ import { BoardCard } from "@/components/Boards/BoardCard";
 import Image from "next/image";
 
 export default function BoardsPage() {
-  const { boards, isLoading, error, createBoard, fetchBoards } = useBoards();
+  const { boards, error, fetchBoards } = useBoards();
 
   useEffect(() => {
     fetchBoards();

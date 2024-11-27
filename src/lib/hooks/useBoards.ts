@@ -1,6 +1,5 @@
 import { useState, useCallback } from "react";
 import { Board } from "@/lib/types/db";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 interface UseBoardsReturn {
   boards: Board[];

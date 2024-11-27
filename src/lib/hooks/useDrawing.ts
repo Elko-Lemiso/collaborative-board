@@ -1,11 +1,5 @@
 import { useCallback, useRef, useEffect, useState } from "react";
-import {
-  Transform,
-  Point,
-  DrawData,
-  CanvasConfig,
-  StrokeData,
-} from "../types/canvas";
+import { Point, DrawData, StrokeData } from "../types/canvas";
 import { UseDrawingProps } from "../types";
 
 export function useDrawing({
