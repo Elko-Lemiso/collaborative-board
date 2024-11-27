@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useCallback } from "react";
 import { useSocket } from "@/lib/hooks/useSocket";
 import { useTransform } from "./useTransform";
 import { useDrawing } from "./useDrawing";
 import { useStickers } from "./useStickers";
 import { CanvasRenderer } from "../services/CanvasRenderer";
+import { UseCanvasReturn } from "@/lib/types/hooks";
+import { StickerData } from "../types";
 
 const config = {
   VIRTUAL_SIZE: 10000,
@@ -11,20 +14,23 @@ const config = {
   GRID_SIZE: 40,
 };
 
-export const useCanvas = (boardId: string, username: string) => {
+export const useCanvas = (
+  boardId: string,
+  username: string
+): UseCanvasReturn => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rendererRef = useRef<CanvasRenderer | null>(null);
   const isInitialized = useRef(false);
 
   const socket = useSocket();
 
-  // Initialize sub-hooks
+  // Initialize sub-hook for transform handling
   const { transform, handleWheel, handlePanStart, handlePanMove } =
     useTransform({
       canvasRef,
     });
 
-  // Grid drawing and main render loop
+  // Grid drawing and main render loop function
   const drawGrid = useCallback(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
@@ -40,22 +46,18 @@ export const useCanvas = (boardId: string, username: string) => {
     rendererRef.current.drawStickers(loadedStickersRef.current, transform);
   }, [transform]);
 
-  const {
-    isDrawing,
-    drawingCanvasRef,
-    startDrawing,
-    draw,
-    stopDrawing,
-    drawLine,
-  } = useDrawing({
-    boardId,
-    transform,
-    config,
-    socket,
-    canvasRef,
-    onDraw: drawGrid,
-  });
+  // Initialize sub-hook for drawing
+  const { isDrawing, drawingCanvasRef, startDrawing, draw, stopDrawing } =
+    useDrawing({
+      boardId,
+      transform,
+      config,
+      socket,
+      canvasRef,
+      onDraw: drawGrid,
+    });
 
+  // Initialize sub-hook for stickers
   const {
     selectedSticker,
     setSelectedSticker,
@@ -90,12 +92,12 @@ export const useCanvas = (boardId: string, username: string) => {
 
   // Handle sticker socket events
   useEffect(() => {
-    const handleSticker = async (sticker: any) => {
+    const handleSticker = async (sticker: StickerData) => {
       await loadStickerImage(sticker);
       requestAnimationFrame(drawGrid);
     };
 
-    const handleStickerUpdate = (sticker: any) => {
+    const handleStickerUpdate = (sticker: StickerData) => {
       const existing = loadedStickersRef.current.get(sticker.id);
       if (existing) {
         loadedStickersRef.current.set(sticker.id, {

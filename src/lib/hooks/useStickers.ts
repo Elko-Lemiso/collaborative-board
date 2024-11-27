@@ -1,12 +1,13 @@
 import { useCallback, useRef, useState, useEffect } from "react";
 import { Transform, Point, CanvasConfig } from "../types/canvas";
 import { StickerData, LoadedSticker } from "../types/sticker";
+import { SocketHook } from "@/lib/types";
 
 interface UseStickersProps {
   boardId: string;
   transform: Transform;
   config: CanvasConfig;
-  socket: any;
+  socket: SocketHook;
   canvasRef: React.RefObject<HTMLCanvasElement>;
   onUpdate?: () => void;
 }
@@ -231,7 +232,11 @@ export function useStickers({
   );
 
   const handleStickerResize = useCallback(
-    (corner: string, initialBounds: any, e: React.PointerEvent) => {
+    (
+      corner: string,
+      initialBounds: { width: number; height: number; x: number; y: number },
+      e: React.PointerEvent
+    ) => {
       if (!selectedSticker) return;
 
       setIsResizing(true);

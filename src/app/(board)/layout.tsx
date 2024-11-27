@@ -6,8 +6,8 @@ interface layoutProps {
 
 const DashboardLayout = ({ children }: layoutProps) => {
   return (
-    <main className="h-full">
-      <div className="h-full w-full">{children}</div>
+    <main className="h-full w-full">
+      {children}
     </main>
   );
 };

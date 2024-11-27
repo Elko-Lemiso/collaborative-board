@@ -1,11 +1,17 @@
 import { useCallback, useRef, useEffect, useState } from "react";
-import { Transform, Point, DrawData, CanvasConfig } from "../types/canvas";
-
+import {
+  Transform,
+  Point,
+  DrawData,
+  CanvasConfig,
+  StrokeData,
+} from "../types/canvas";
+import { SocketHook } from "@/lib/types/socket";
 interface UseDrawingProps {
   boardId: string;
   transform: Transform;
   config: CanvasConfig;
-  socket: any;
+  socket: SocketHook;
   canvasRef: React.RefObject<HTMLCanvasElement>;
   onDraw?: () => void;
 }
@@ -41,7 +47,7 @@ export function useDrawing({
     fetch(`/api/boards/${boardId}/strokes`)
       .then((res) => res.json())
       .then((strokes) => {
-        strokes.forEach((stroke: any) => {
+        strokes.forEach((stroke: StrokeData) => {
           drawLine(
             { x: stroke.fromX, y: stroke.fromY },
             { x: stroke.toX, y: stroke.toY },

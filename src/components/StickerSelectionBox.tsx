@@ -9,7 +9,11 @@ const CENTER_OFFSET = 5000; // Matching the canvas config
 interface StickerSelectionBoxProps {
   sticker: StickerData;
   transform: Transform;
-  onResize: (corner: string, initialBounds: any, e: React.PointerEvent) => void;
+  onResize: (
+    corner: string,
+    initialBounds: { x: number; y: number; width: number; height: number },
+    e: React.PointerEvent
+  ) => void;
   onDelete: () => void;
 }
 
@@ -20,9 +24,12 @@ export const StickerSelectionBox: React.FC<StickerSelectionBoxProps> = ({
   onDelete,
 }) => {
   // Calculate screen coordinates
+  // screenX has 
   const screenX =
     (sticker.x - CENTER_OFFSET - sticker.width / 2) * transform.scale +
     transform.x;
+
+  // screenY is calculated from the top-left corner of the sticker
   const screenY =
     (sticker.y - CENTER_OFFSET - sticker.height / 2) * transform.scale +
     transform.y;

@@ -1,31 +1,8 @@
-// src/lib/hooks/useSocket.ts
-
 import { useEffect, useRef } from "react";
 import { io, Socket } from "socket.io-client";
-import { DrawData } from "../types/socket";
+import { DrawData } from "@/lib/types/canvas";
 import { StickerData } from "../types/sticker";
-
-interface SocketHook {
-  joinBoard: (boardId: string, username: string) => void;
-  leaveBoard: (boardId: string) => void;
-  drawOnBoard: (boardId: string, data: DrawData) => void;
-  addSticker: (boardId: string, data: StickerData) => void;
-  updateSticker: (boardId: string, data: StickerData) => void;
-  deleteSticker: (boardId: string, stickerId: string) => void; // Added
-  onDraw: (callback: (data: DrawData) => void) => void;
-  offDraw: (callback: (data: DrawData) => void) => void;
-  onSticker: (callback: (data: StickerData) => void) => void;
-  offSticker: (callback: (data: StickerData) => void) => void;
-  onUpdateSticker: (callback: (data: StickerData) => void) => void;
-  offUpdateSticker: (callback: (data: StickerData) => void) => void;
-  onDeleteSticker: (callback: (stickerId: string) => void) => void; // Added
-  offDeleteSticker: (callback: (stickerId: string) => void) => void; // Added
-  onUserJoined: (callback: (data: { username: string }) => void) => void;
-  offUserJoined: (callback: (data: { username: string }) => void) => void;
-  onUserLeft: (callback: (data: { username: string }) => void) => void;
-  offUserLeft: (callback: (data: { username: string }) => void) => void;
-  emit: (event: string, data: unknown) => void;
-}
+import { SocketHook } from "@/lib/types/socket";
 
 export const useSocket = (): SocketHook => {
   const socketRef = useRef<Socket | null>(null);

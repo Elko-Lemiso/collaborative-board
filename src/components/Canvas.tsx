@@ -31,7 +31,7 @@ export const Canvas = ({ boardId, username }: CanvasProps) => {
     handleStickerResize,
     handleDeleteSticker,
     addSticker,
-    loadedStickersRef,
+
     handleCanvasClick,
   } = useCanvas(boardId, username);
 
