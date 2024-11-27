@@ -51,4 +51,6 @@ export interface UseCanvasReturn {
   loadedStickersRef: React.RefObject<Map<string, LoadedSticker>>;
   handleCanvasClick: (e: React.MouseEvent) => void;
   isLoading: boolean;
+  connectedUsers: string[];
+  joinError: string | null;
 }

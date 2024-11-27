@@ -13,25 +13,28 @@ export interface SocketEvents {
 }
 
 export interface SocketHook {
+  isConnected: boolean;
   joinBoard: (boardId: string, username: string) => void;
   leaveBoard: (boardId: string) => void;
   drawOnBoard: (boardId: string, data: DrawData) => void;
   addSticker: (boardId: string, data: StickerData) => void;
   updateSticker: (boardId: string, data: StickerData) => void;
-  deleteSticker: (boardId: string, stickerId: string) => void; // Added
+  deleteSticker: (boardId: string, stickerId: string) => void;
   onDraw: (callback: (data: DrawData) => void) => void;
   offDraw: (callback: (data: DrawData) => void) => void;
   onSticker: (callback: (data: StickerData) => void) => void;
   offSticker: (callback: (data: StickerData) => void) => void;
   onUpdateSticker: (callback: (data: StickerData) => void) => void;
   offUpdateSticker: (callback: (data: StickerData) => void) => void;
-  onDeleteSticker: (callback: (stickerId: string) => void) => void; // Added
-  offDeleteSticker: (callback: (stickerId: string) => void) => void; // Added
+  onDeleteSticker: (callback: (stickerId: string) => void) => void;
+  offDeleteSticker: (callback: (stickerId: string) => void) => void;
   onUserJoined: (callback: (data: { username: string }) => void) => void;
   offUserJoined: (callback: (data: { username: string }) => void) => void;
   onUserLeft: (callback: (data: { username: string }) => void) => void;
   offUserLeft: (callback: (data: { username: string }) => void) => void;
-  emit: (event: string, data: unknown) => void;
+  onUsersUpdate: (callback: (users: string[]) => void) => void;
+  offUsersUpdate: (callback: (users: string[]) => void) => void;
+  joinError: string | null;
 }
 
 export interface SocketClient {

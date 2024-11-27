@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import useCanvas from "@/lib/hooks/useCanvas";
 import ActionBar from "@/components/Canvas/ActionBar";
 import { StickerSelectionBox } from "./StickerSelectionBox";
 import { CanvasMode } from "@/lib/types/canvas";
 import { Point } from "@/lib/types/canvas";
-import Image from "next/image";
+
 interface CanvasProps {
   boardId: string;
   username: string;
@@ -14,7 +14,6 @@ export const Canvas = ({ boardId, username }: CanvasProps) => {
   const [mode, setMode] = useState<CanvasMode>("draw");
   const isPanning = useRef(false);
   const lastPoint = useRef<Point | null>(null);
-
   const {
     canvasRef,
     transform,
@@ -31,28 +30,28 @@ export const Canvas = ({ boardId, username }: CanvasProps) => {
     handleStickerResize,
     handleDeleteSticker,
     addSticker,
-    isLoading,
     handleCanvasClick,
+    connectedUsers,
   } = useCanvas(boardId, username);
 
   const handleCanvasMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
 
     if (mode === "select" && e.button === 0) {
-      // Always check for click first - this will handle both selection and deselection
+      // Handle selection first
       handleCanvasClick(e);
-      // If we clicked a selected sticker, start dragging it
+      // Check if we clicked a sticker
       if (selectedSticker) {
         handleStickerDragStart(e);
       }
     } else if (mode === "draw" && e.button === 0) {
-      setSelectedSticker(null); // Deselect when switching to draw mode
+      setSelectedSticker(null);
       startDrawing(e);
     } else if (mode === "sticker" && e.button === 0) {
-      setSelectedSticker(null); // Deselect when adding new sticker
+      setSelectedSticker(null);
       addSticker(e);
     } else if (mode === "move" || e.button === 1 || e.button === 2) {
-      setSelectedSticker(null); // Deselect when panning
+      setSelectedSticker(null);
       isPanning.current = true;
       lastPoint.current = handlePanStart(e);
     }
@@ -93,6 +92,23 @@ export const Canvas = ({ boardId, username }: CanvasProps) => {
             setSelectedSticker(null);
           }}
         />
+
+        {/* Users List */}
+        <div className="absolute top-4 right-4 bg-white/90 rounded-lg shadow-lg p-4 z-50">
+          <div className="text-sm font-medium text-gray-900 mb-3">
+            Connected Users ({connectedUsers?.length || 0})
+          </div>
+          <div className="space-y-2">
+            {connectedUsers?.map((user) => (
+              <div key={user} className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-green-500" />
+                <span className="text-sm text-gray-700">
+                  {user} {user === username && "(you)"}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
 
         <canvas
           ref={canvasRef}

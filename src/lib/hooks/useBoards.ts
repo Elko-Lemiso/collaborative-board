@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { Board } from "@/lib/types/db";
+import { redirect } from "next/navigation";
 
 interface UseBoardsReturn {
   boards: Board[];
@@ -19,7 +20,17 @@ export function useBoards(): UseBoardsReturn {
       setIsLoading(true);
       setError(null);
 
-      const response = await fetch("/api/boards");
+      const username = localStorage.getItem("username");
+
+      if (!username) {
+        redirect("/auth");
+      }
+
+      const response = await fetch("/api/boards", {
+        headers: {
+          "x-username": username || "",
+        },
+      });
 
       if (!response.ok) {
         throw new Error("Failed to fetch boards");
@@ -53,8 +64,8 @@ export function useBoards(): UseBoardsReturn {
         }
 
         const data = await response.json();
-        setBoards((prev) => [...prev, data.board]);
-        return data.board;
+
+        redirect(`/board/${data.board.id}`);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to create board");
         console.error("Error creating board:", err);

@@ -1,39 +1,51 @@
-import React, { useState } from "react";
-import { AuthFormData } from "@/lib/types/auth";
+"use client";
+import React, { useState, useContext, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+
 export const UsernameForm = () => {
-  const [username, setUsername] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [formUsername, setFormUsername] = useState("");
+
+  // Check for existing username in localStorage on mount
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      router.push("/boards");
+    }
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setIsLoading(true);
 
     try {
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: username }),
+        body: JSON.stringify({ username: formUsername.trim() }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
         setError(data.message || "Something went wrong");
+        setIsLoading(false);
         return;
       }
 
-      // Set username in context
-      setUsername(username);
+      // Save username to localStorage
+      localStorage.setItem("username", formUsername.trim());
 
       // Redirect to Board List Page
       router.push("/boards");
     } catch (err) {
-      console.error(err);
+      console.error("Registration error:", err);
       setError("An unexpected error occurred");
+      setIsLoading(false);
     }
   };
 
@@ -67,8 +79,8 @@ export const UsernameForm = () => {
                     name="username"
                     type="text"
                     required
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={formUsername}
+                    onChange={(e) => setFormUsername(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 shadow-sm 
                              ring-1 ring-inset ring-gray-300 
                              placeholder:text-gray-400 
@@ -84,7 +96,7 @@ export const UsernameForm = () => {
               <div>
                 <button
                   type="submit"
-                  disabled={isLoading || !username.trim()}
+                  disabled={isLoading || !formUsername.trim()}
                   className="flex w-full justify-center rounded-md bg-orange-500 
                            px-3 py-1.5 text-sm font-semibold text-white 
                            shadow-sm hover:bg-orange-600
@@ -93,7 +105,33 @@ export const UsernameForm = () => {
                            focus-visible:outline-orange-600
                            disabled:bg-orange-400 disabled:cursor-not-allowed"
                 >
-                  {isLoading ? "Loading..." : "Continue"}
+                  {isLoading ? (
+                    <div className="flex items-center">
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        />
+                      </svg>
+                      Signing in...
+                    </div>
+                  ) : (
+                    "Continue"
+                  )}
                 </button>
               </div>
             </form>

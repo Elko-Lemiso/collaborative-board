@@ -19,6 +19,8 @@ export const BoardCard = ({
   return (
     <Link
       href={`/board/${id}`}
+      target="_blank"
+      rel="noopener noreferrer"
       className="group relative bg-gray-50 aspect-[100/127] rounded-lg hover:bg-gray-100 transition border border-gray-200"
     >
       <div className="absolute inset-0 p-4 flex flex-col">

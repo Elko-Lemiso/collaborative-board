@@ -1,31 +1,26 @@
+// app/api/boards/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getUsernameFromCookies } from "@/lib/cookies";
+import { headers } from "next/headers";
+
+
+// Helper function to get username from Authorization header
+async function getUsernameFromHeader() {
+  const headersList = await headers();
+  const username = headersList.get("x-username");
+  return username;
+}
 
 export async function GET() {
-  const username = await getUsernameFromCookies();
+  const username = await getUsernameFromHeader();
 
   if (!username) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
-  const user = await prisma.user.findUnique({
-    where: { username },
-  });
-
-  if (!user) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-  }
-
   try {
+    // Fetch all boards without user restriction
     const boards = await prisma.board.findMany({
-      where: {
-        users: {
-          some: {
-            id: user.id,
-          },
-        },
-      },
       include: {
         users: true,
         _count: {
@@ -37,7 +32,7 @@ export async function GET() {
         },
       },
       orderBy: {
-        updatedAt: 'desc',
+        updatedAt: "desc",
       },
     });
 
@@ -52,7 +47,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const username = await getUsernameFromCookies();
+  const username = await getUsernameFromHeader();
 
   if (!username) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });

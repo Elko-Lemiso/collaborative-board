@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+// hooks/useCanvas.ts
 import { useEffect, useRef, useCallback, useState } from "react";
 import { useSocket } from "@/lib/hooks/useSocket";
 import { useTransform } from "./useTransform";
@@ -7,6 +7,7 @@ import { useStickers } from "./useStickers";
 import { CanvasRenderer } from "../services/CanvasRenderer";
 import { UseCanvasReturn } from "@/lib/types/hooks";
 import { StickerData } from "../types";
+import { redirect } from "next/navigation";
 
 const config = {
   VIRTUAL_SIZE: 10000,
@@ -21,16 +22,16 @@ export const useCanvas = (
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rendererRef = useRef<CanvasRenderer | null>(null);
   const isInitialized = useRef(false);
-
+  const [isReady, setIsReady] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const socket = useSocket();
-
+  const [connectedUsers, setConnectedUsers] = useState<string[]>([]);
+  const { joinError } = socket;
   // Initialize sub-hook for transform handling
   const { transform, handleWheel, handlePanStart, handlePanMove } =
     useTransform({
       canvasRef,
     });
-
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Grid drawing and main render loop function
   const drawGrid = useCallback(() => {
@@ -83,15 +84,39 @@ export const useCanvas = (
 
   // Initialize canvas and socket connection
   useEffect(() => {
-    if (!canvasRef.current || isInitialized.current) return;
+    if (!canvasRef.current || isInitialized.current || !socket.isConnected)
+      return;
 
-    isInitialized.current = true;
-    socket.joinBoard(boardId, username);
+    const initializeBoard = async () => {
+      isInitialized.current = true;
+      socket.joinBoard(boardId, username);
 
-    return () => {
-      socket.leaveBoard(boardId);
+      // Wait a short moment for socket joining to complete
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      setIsReady(true);
+      console.log("Canvas ready for interaction");
     };
-  }, [boardId, username, socket]);
+
+    initializeBoard();
+  }, [boardId, username, socket, socket.isConnected]);
+
+  // Re-run initialization when socket connects
+  useEffect(() => {
+    if (socket.isConnected && !isInitialized.current) {
+      const initializeBoard = async () => {
+        isInitialized.current = true;
+        socket.joinBoard(boardId, username);
+
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
+        setIsReady(true);
+        console.log("Canvas ready for interaction after reconnection");
+      };
+
+      initializeBoard();
+    }
+  }, [socket.isConnected, boardId, username, socket]);
 
   // Handle sticker socket events
   useEffect(() => {
@@ -168,6 +193,25 @@ export const useCanvas = (
       clearTimeout(resizeTimeout);
     };
   }, [drawGrid, handleWheel]);
+  // In useCanvas.ts
+  useEffect(() => {
+    const handleUsersUpdate = (users: string[]) => {
+      setConnectedUsers(users);
+    };
+
+    socket.onUsersUpdate(handleUsersUpdate);
+
+    return () => {
+      socket.offUsersUpdate(handleUsersUpdate);
+    };
+  }, [socket]);
+
+  useEffect(() => {
+    if (joinError) {
+      redirect("/error");
+      // Optionally, redirect the user or take other actions
+    }
+  }, [joinError]);
 
   return {
     canvasRef,
@@ -189,6 +233,8 @@ export const useCanvas = (
     loadedStickersRef,
     handleCanvasClick,
     isLoading,
+    connectedUsers,
+    joinError,
   };
 };
 

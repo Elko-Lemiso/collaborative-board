@@ -48,7 +48,7 @@ export function useDrawing({
             stroke.width
           );
         });
-        setIsLoading(false); 
+        setIsLoading(false);
       })
       .catch(console.error);
 
@@ -142,9 +142,11 @@ export function useDrawing({
       // Draw locally
       drawLine(drawData.from, drawData.to, drawData.color, drawData.width);
 
-      // Emit to other users via socket
+      // Send to server and log
+      console.log(`Sending draw event for board ${boardId}:`, drawData);
       socket.drawOnBoard(boardId, drawData);
 
+      // Update last point
       lastPoint.current = currentPoint;
     },
     [boardId, getCanvasPoint, drawLine, socket, isDrawing]

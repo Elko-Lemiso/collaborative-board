@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { FolderIcon, HomeIcon, UsersIcon, MenuIcon } from "lucide-react";
+import React, { useState } from "react";
+import { FolderIcon, MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,6 +21,7 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const username = localStorage.getItem("username");
 
   return (
     <div>
@@ -45,9 +46,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className={
-                          "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-200 hover:text-gray-900"
-                        }
+                        className="group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-200 hover:text-gray-900"
                       >
                         <item.icon
                           className="h-6 w-6 shrink-0"
@@ -59,10 +58,45 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   ))}
                 </ul>
               </li>
+              {/* User info */}
+              <li className="mt-auto">
+                <div className="flex items-center gap-x-4 px-2 py-3 text-sm font-semibold leading-6 text-gray-900">
+                  <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
+                    {username?.[0]?.toUpperCase()}
+                  </div>
+                  <span className="sr-only">Your profile</span>
+                  <span aria-hidden="true">{username}</span>
+                </div>
+              </li>
             </ul>
           </nav>
         </div>
       </div>
+
+      {/* Mobile sidebar */}
+      {sidebarOpen && (
+        <div className="relative z-50 xl:hidden">
+          <div className="fixed inset-0 bg-gray-900/80" />
+          <div className="fixed inset-0 flex">
+            <div className="relative mr-16 flex w-full max-w-xs flex-1">
+              <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
+                <button
+                  type="button"
+                  className="-m-2.5 p-2.5"
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <span className="sr-only">Close sidebar</span>
+                  <MenuIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                </button>
+              </div>
+              {/* Mobile sidebar content */}
+              <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2">
+                {/* Add your mobile sidebar content here */}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="xl:pl-72">
         {/* Top header */}

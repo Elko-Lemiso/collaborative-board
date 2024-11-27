@@ -143,18 +143,27 @@ export function useStickers({
         const dx = currentPoint.x - dragStartPos.current.x;
         const dy = currentPoint.y - dragStartPos.current.y;
 
-        const updatedSticker = {
+        const updatedSticker: StickerData = {
           ...selectedSticker,
           x: originalStickerPos.current.x + dx,
           y: originalStickerPos.current.y + dy,
         };
 
-        loadedStickersRef.current.set(selectedSticker.id, {
-          ...loadedStickersRef.current.get(selectedSticker.id)!,
-          ...updatedSticker,
-        });
+        // Update local state
+        const existingSticker = loadedStickersRef.current.get(
+          selectedSticker.id
+        );
+        if (existingSticker) {
+          loadedStickersRef.current.set(selectedSticker.id, {
+            ...existingSticker,
+            ...updatedSticker,
+          });
+        }
 
+        // Update selected sticker
         setSelectedSticker(updatedSticker);
+
+        // Emit socket event
         socket.updateSticker(boardId, updatedSticker);
 
         if (onUpdate) requestAnimationFrame(onUpdate);
@@ -164,11 +173,16 @@ export function useStickers({
         if (!selectedSticker) return;
 
         isDragging.current = false;
+
+        // Get final position from local state
         const finalSticker = loadedStickersRef.current.get(selectedSticker.id);
         if (finalSticker) {
+          // Ensure one final update is sent
           socket.updateSticker(boardId, finalSticker);
+          // Make sure selected sticker reflects final position
         }
 
+        if (onUpdate) requestAnimationFrame(onUpdate);
         window.removeEventListener("mousemove", handleDragMove);
         window.removeEventListener("mouseup", handleDragEnd);
       };
@@ -187,41 +201,38 @@ export function useStickers({
       let clickedSticker: StickerData | null = null;
 
       // Try to find a sticker under the click point
-      Array.from(loadedStickersRef.current.values())
-        .reverse()
-        .some((sticker) => {
-          const stickerCenter = {
-            x: sticker.x,
-            y: sticker.y,
-          };
+      const stickers = Array.from(loadedStickersRef.current.values()).reverse();
 
-          const rotation = sticker.rotation || 0;
-          const rad = (rotation * Math.PI) / 180;
-          const cos = Math.cos(-rad);
-          const sin = Math.sin(-rad);
+      for (const sticker of stickers) {
+        const stickerCenter = {
+          x: sticker.x,
+          y: sticker.y,
+        };
 
-          const dx = point.x - stickerCenter.x;
-          const dy = point.y - stickerCenter.y;
+        const rotation = sticker.rotation || 0;
+        const rad = (rotation * Math.PI) / 180;
+        const cos = Math.cos(-rad);
+        const sin = Math.sin(-rad);
 
-          const rotatedX = dx * cos - dy * sin;
-          const rotatedY = dx * sin + dy * cos;
+        const dx = point.x - stickerCenter.x;
+        const dy = point.y - stickerCenter.y;
 
-          if (
-            Math.abs(rotatedX) <= sticker.width / 2 &&
-            Math.abs(rotatedY) <= sticker.height / 2
-          ) {
-            clickedSticker = sticker;
-            return true;
-          }
-          return false;
-        });
+        const rotatedX = dx * cos - dy * sin;
+        const rotatedY = dx * sin + dy * cos;
 
-      // If we clicked empty space or a different sticker, update the selection
+        if (
+          Math.abs(rotatedX) <= sticker.width / 2 &&
+          Math.abs(rotatedY) <= sticker.height / 2
+        ) {
+          clickedSticker = sticker;
+          break;
+        }
+      }
+
       setSelectedSticker(clickedSticker);
     },
     [isResizing, screenToCanvas]
   );
-
   const handleStickerResize = useCallback(
     (
       corner: string,

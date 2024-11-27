@@ -51,7 +51,6 @@ model Sticker {
 model User {
   id          String    @id @default(uuid())
   username    String    @unique
-  isConnected Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   strokes     Stroke[]

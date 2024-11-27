@@ -5,11 +5,14 @@ import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma"; // Ensure correct import path
 import { StickerData } from "@/lib/types/sticker";
 
-export async function GET(
-  request: NextRequest,
-  context: { params: { boardId: string } }
-) {
-  const { boardId } = await context.params;
+interface RouteParams {
+  params: {
+    boardId: string;
+    stickerId?: string;
+  };
+}
+export async function GETGET(request: NextRequest, { params }: RouteParams) {
+  const { boardId } = await params;
 
   try {
     console.log("Fetching stickers for board:", boardId);
@@ -30,11 +33,8 @@ export async function GET(
   }
 }
 
-export async function POST(
-  request: NextRequest,
-  context: { params: { boardId: string } }
-) {
-  const { boardId } = context.params;
+export async function POST(request: NextRequest, { params }: RouteParams) {
+  const { boardId } = await params;
   const data: StickerData = await request.json();
 
   try {
@@ -61,11 +61,8 @@ export async function POST(
   }
 }
 
-export async function PUT(
-  request: NextRequest,
-  context: { params: { boardId: string; stickerId: string } }
-) {
-  const { boardId, stickerId } = context.params;
+export async function PUT(request: NextRequest, { params }: RouteParams) {
+  const { stickerId } = await params;
   const data: Partial<StickerData> = await request.json();
 
   try {
@@ -92,11 +89,8 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  request: NextRequest,
-  context: { params: { boardId: string; stickerId: string } }
-) {
-  const { boardId, stickerId } = context.params;
+export async function DELETE(request: NextRequest, { params }: RouteParams) {
+  const { stickerId } = await params;
 
   try {
     await prisma.sticker.delete({

@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import { useBoards } from "@/lib/hooks/useBoards";
-import { CreateBoard } from "./CreateBoard";
-import { BoardCard } from "./BoardCard";
+import { CreateBoard } from "@/components/Boards/CreateBoard";
+import { BoardCard } from "@/components/Boards/BoardCard";
 import Image from "next/image";
 
 export default function BoardsPage() {
