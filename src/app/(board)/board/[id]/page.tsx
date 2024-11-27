@@ -1,21 +1,20 @@
 "use client";
 
 import Canvas from "@/components/Canvas/Canvas";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function BoardPage({ params }: PageProps) {
+export default function BoardPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const [username, setUsername] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const boardId = params.id;
+  const { id: boardId } = use(params);
 
   useEffect(() => {
+    if (!window) return;
     const storedUsername = localStorage.getItem("username");
     setUsername(storedUsername);
     setIsLoading(false);

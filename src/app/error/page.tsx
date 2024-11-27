@@ -6,7 +6,7 @@ export default function Error() {
       <main className="relative isolate min-h-full">
         <img
           alt=""
-          src="https://images.pexels.com/photos/2253934/pexels-photo-2253934.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          src="https://images.pexels.com/photos/65435/pexels-photo-65435.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           className="absolute inset-0 -z-10 size-full object-cover object-top"
         />
         <div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">

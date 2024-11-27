@@ -3,11 +3,20 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { headers } from "next/headers";
 
+interface RouteParams {
+  params: {
+    boardId: string;
+    stickerId?: string;
+  };
+}
 
 // Helper function to get username from Authorization header
 async function getUsernameFromHeader() {
   const headersList = await headers();
   const username = headersList.get("x-username");
+
+  console.log("username", username);
+  
   return username;
 }
 
@@ -46,7 +55,7 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request, { params }: RouteParams) {
   const username = await getUsernameFromHeader();
 
   if (!username) {

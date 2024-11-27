@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { Board } from "@/lib/types/db";
 import { redirect } from "next/navigation";
-
+import { useRouter } from "next/navigation";
 interface UseBoardsReturn {
   boards: Board[];
   isLoading: boolean;
@@ -14,21 +14,21 @@ export function useBoards(): UseBoardsReturn {
   const [boards, setBoards] = useState<Board[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  const router = useRouter();
   const fetchBoards = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
 
       const username = localStorage.getItem("username");
-
       if (!username) {
-        redirect("/auth");
+        router.push("/auth");
+        return;
       }
 
       const response = await fetch("/api/boards", {
         headers: {
-          "x-username": username || "",
+          "x-username": username,
         },
       });
 
@@ -50,11 +50,18 @@ export function useBoards(): UseBoardsReturn {
     async (name: string): Promise<Board | null> => {
       try {
         setError(null);
+        const username = localStorage.getItem("username");
+
+        if (!username) {
+          router.push("/auth");
+          return null;
+        }
 
         const response = await fetch("/api/boards", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "x-username": username,
           },
           body: JSON.stringify({ name }),
         });
@@ -64,15 +71,15 @@ export function useBoards(): UseBoardsReturn {
         }
 
         const data = await response.json();
-
-        redirect(`/board/${data.board.id}`);
+        router.push(`/board/${data.board.id}`);
+        return data.board;
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to create board");
         console.error("Error creating board:", err);
         return null;
       }
     },
-    []
+    [router]
   );
 
   return {

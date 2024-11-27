@@ -15,12 +15,29 @@ export const useSocket = (): SocketHook => {
     socketRef.current = io(); // You can pass options here if needed
   }
 
-  const socket = socketRef.current;
+  console.log("Socket initialized");
+  console.log(socketRef.current);
+  console.log(socketRef.current?.connected);
 
   useEffect(() => {
+    const socketOptions = {
+      transports: ["websocket"],
+      reconnection: true,
+      reconnectionAttempts: 5,
+      reconnectionDelay: 1000,
+    };
+
+    socketRef.current = io(
+      process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3000",
+      socketOptions
+    );
+    const socket = socketRef.current;
+
+    // Connection handlers
     const handleConnect = () => {
       console.log("Socket connected");
       setIsConnected(true);
+      setJoinError(null);
     };
 
     const handleDisconnect = () => {
@@ -28,32 +45,41 @@ export const useSocket = (): SocketHook => {
       setIsConnected(false);
     };
 
+    const handleError = (error: Error) => {
+      console.error("Socket error:", error);
+      setJoinError(error.message);
+    };
+
+    const handleReconnect = (attemptNumber: number) => {
+      console.log(`Socket reconnection attempt ${attemptNumber}`);
+    };
+
+    const handleJoinError = (error: { message: string }) => {
+      setJoinError(error.message);
+    };
+
+    // Set up event listeners
     socket.on("connect", handleConnect);
     socket.on("disconnect", handleDisconnect);
+    socket.on("error", handleError);
+    socket.on("reconnect_attempt", handleReconnect);
+    socket.on("join-error", handleJoinError);
 
     // Set initial connection state
     setIsConnected(socket.connected);
 
+    // Cleanup
     return () => {
       socket.off("connect", handleConnect);
       socket.off("disconnect", handleDisconnect);
-      socket.disconnect(); // Disconnect when the hook unmounts
-    };
-  }, [socket]);
-
-  // Error handling
-  useEffect(() => {
-    const handleJoinError = (error: { message: string }) => {
-      setJoinError(error.message);
-      socket.disconnect(); // Disconnect socket on error
-    };
-
-    socket.on("join-error", handleJoinError);
-
-    return () => {
+      socket.off("error", handleError);
+      socket.off("reconnect_attempt", handleReconnect);
       socket.off("join-error", handleJoinError);
+      socket.disconnect();
     };
-  }, [socket]);
+  }, []);
+
+  const socket = socketRef.current;
 
   // Socket event handlers
   const joinBoard = useCallback(
@@ -192,7 +218,6 @@ export const useSocket = (): SocketHook => {
   const onUsersUpdate = useCallback(
     (callback: (users: string[]) => void) => {
       socket.on("users-update", callback);
-      console.log("Listening for users-update");
     },
     [socket]
   );

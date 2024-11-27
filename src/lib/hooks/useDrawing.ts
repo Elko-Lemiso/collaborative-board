@@ -143,7 +143,6 @@ export function useDrawing({
       drawLine(drawData.from, drawData.to, drawData.color, drawData.width);
 
       // Send to server and log
-      console.log(`Sending draw event for board ${boardId}:`, drawData);
       socket.drawOnBoard(boardId, drawData);
 
       // Update last point

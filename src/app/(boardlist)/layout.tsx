@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FolderIcon, MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface NavItem {
   name: string;
@@ -21,7 +22,17 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const username = localStorage.getItem("username");
+  const [username, setUsername] = useState<string | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    setUsername(storedUsername);
+
+    if (!storedUsername) {
+      router.push("/auth");
+    }
+  }, [router]);
 
   return (
     <div>

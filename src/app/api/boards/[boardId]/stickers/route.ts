@@ -11,7 +11,7 @@ interface RouteParams {
     stickerId?: string;
   };
 }
-export async function GETGET(request: NextRequest, { params }: RouteParams) {
+export async function GET(request: NextRequest, { params }: RouteParams) {
   const { boardId } = await params;
 
   try {
