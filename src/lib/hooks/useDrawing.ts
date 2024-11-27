@@ -6,15 +6,7 @@ import {
   CanvasConfig,
   StrokeData,
 } from "../types/canvas";
-import { SocketHook } from "@/lib/types/socket";
-interface UseDrawingProps {
-  boardId: string;
-  transform: Transform;
-  config: CanvasConfig;
-  socket: SocketHook;
-  canvasRef: React.RefObject<HTMLCanvasElement>;
-  onDraw?: () => void;
-}
+import { UseDrawingProps } from "../types";
 
 export function useDrawing({
   boardId,
@@ -23,6 +15,7 @@ export function useDrawing({
   socket,
   canvasRef,
   onDraw,
+  setIsLoading,
 }: UseDrawingProps) {
   const lastPoint = useRef<Point | null>(null);
   const drawingCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -55,6 +48,7 @@ export function useDrawing({
             stroke.width
           );
         });
+        setIsLoading(false); 
       })
       .catch(console.error);
 
@@ -63,7 +57,7 @@ export function useDrawing({
         cancelAnimationFrame(requestRef.current);
       }
     };
-  }, [boardId, config]);
+  }, [boardId, config, setIsLoading]);
 
   const drawLine = useCallback(
     (from: Point, to: Point, color = "#000000", width = 2) => {

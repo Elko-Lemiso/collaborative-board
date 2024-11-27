@@ -15,7 +15,6 @@ export default function BoardPage({ params }: { params: Promise<{ id: string }> 
 
   return (
     <div className="w-full h-full">
-      <h1>Board: {boardId}</h1>
       <Canvas boardId={boardId} username={username} />
     </div>
   );

@@ -4,7 +4,7 @@ import ActionBar from "@/components/ActionBar";
 import { StickerSelectionBox } from "./StickerSelectionBox";
 import { CanvasMode } from "@/lib/types/canvas";
 import { Point } from "@/lib/types/canvas";
-
+import Image from "next/image";
 interface CanvasProps {
   boardId: string;
   username: string;
@@ -31,7 +31,7 @@ export const Canvas = ({ boardId, username }: CanvasProps) => {
     handleStickerResize,
     handleDeleteSticker,
     addSticker,
-
+    isLoading,
     handleCanvasClick,
   } = useCanvas(boardId, username);
 
@@ -83,8 +83,24 @@ export const Canvas = ({ boardId, username }: CanvasProps) => {
     handleCanvasMouseUp(e);
   };
 
-  return (
+  return (<>
+      {isLoading ? (
+      <div className="h-full w-full flex items-center justify-center z-40">
+      <Image
+        src="/logo.svg"
+        alt="Next.js logo"
+        width={120}
+        height={38}
+        priority
+        className="animate-pulse duration-700 dark:invert"
+      />
+    </div>
+      ) : (
+
     <div className="relative w-screen h-screen overflow-hidden">
+
+
+
       <ActionBar
         mode={mode}
         setMode={(newMode) => {
@@ -92,6 +108,7 @@ export const Canvas = ({ boardId, username }: CanvasProps) => {
           setSelectedSticker(null);
         }}
       />
+
 
       <canvas
         ref={canvasRef}
@@ -147,7 +164,9 @@ export const Canvas = ({ boardId, username }: CanvasProps) => {
           )}
         </div>
       )}
-    </div>
+    </div>)}
+  </>
+
   );
 };
 

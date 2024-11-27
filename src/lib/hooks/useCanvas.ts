@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import { useSocket } from "@/lib/hooks/useSocket";
 import { useTransform } from "./useTransform";
 import { useDrawing } from "./useDrawing";
@@ -30,6 +30,9 @@ export const useCanvas = (
       canvasRef,
     });
 
+    const [isLoading, setIsLoading] = useState<boolean>(true); 
+
+
   // Grid drawing and main render loop function
   const drawGrid = useCallback(() => {
     const canvas = canvasRef.current;
@@ -55,6 +58,7 @@ export const useCanvas = (
       socket,
       canvasRef,
       onDraw: drawGrid,
+      setIsLoading
     });
 
   // Initialize sub-hook for stickers
@@ -69,6 +73,7 @@ export const useCanvas = (
     addSticker,
     loadStickerImage,
     handleCanvasClick,
+
   } = useStickers({
     boardId,
     transform,
@@ -185,6 +190,7 @@ export const useCanvas = (
     drawGrid,
     loadedStickersRef,
     handleCanvasClick,
+    isLoading,
   };
 };
 

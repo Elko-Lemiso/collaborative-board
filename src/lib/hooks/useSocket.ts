@@ -9,7 +9,7 @@ export const useSocket = (): SocketHook => {
 
   // Initialize the socket connection only once
   if (!socketRef.current) {
-    socketRef.current = io(); // You can pass the server URL here if different from the client
+    socketRef.current = io();
   }
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export const useSocket = (): SocketHook => {
   };
 
   const deleteSticker = (boardId: string, stickerId: string) => {
-    // Added
+    
     socket.emit("delete-sticker", boardId, stickerId);
   };
 
@@ -63,7 +63,7 @@ export const useSocket = (): SocketHook => {
   };
 
   const onDeleteSticker = (callback: (stickerId: string) => void) => {
-    // Added
+    
     socket.on("delete-sticker", callback);
   };
 
@@ -89,7 +89,7 @@ export const useSocket = (): SocketHook => {
   };
 
   const offDeleteSticker = (callback: (stickerId: string) => void) => {
-    // Added
+    
     socket.off("delete-sticker", callback);
   };
 
@@ -111,15 +111,15 @@ export const useSocket = (): SocketHook => {
     drawOnBoard,
     addSticker,
     updateSticker,
-    deleteSticker, // Added
+    deleteSticker, 
     onDraw,
     offDraw,
     onSticker,
     offSticker,
     onUpdateSticker,
     offUpdateSticker,
-    onDeleteSticker, // Added
-    offDeleteSticker, // Added
+    onDeleteSticker, 
+    offDeleteSticker, 
     onUserJoined,
     offUserJoined,
     onUserLeft,

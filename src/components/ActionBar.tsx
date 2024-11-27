@@ -13,9 +13,6 @@ export const ActionBar: React.FC<ActionBarProps> = ({ mode, setMode }) => {
     { id: "draw" as CanvasMode, icon: Pencil, label: "Draw" },
     { id: "move" as CanvasMode, icon: Move, label: "Move" },
     { id: "sticker" as CanvasMode, icon: Image, label: "Add Sticker" },
-    { id: "erase" as CanvasMode, icon: Eraser, label: "Erase" },
-    { id: "text" as CanvasMode, icon: TextQuoteIcon, label: "Text Input" },
-    { id: "shape" as CanvasMode, icon: Shapes, label: "Add Shape" }
   ];
 
   return (

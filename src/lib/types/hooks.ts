@@ -1,6 +1,6 @@
 import { Transform, CanvasConfig, Point } from "./canvas";
 import { StickerData, LoadedSticker } from "./sticker";
-import { SocketClient } from "./socket";
+import { SocketHook } from "./socket";
 
 export interface UseTransformProps {
   canvasRef: React.RefObject<HTMLCanvasElement>;
@@ -10,16 +10,18 @@ export interface UseDrawingProps {
   boardId: string;
   transform: Transform;
   config: CanvasConfig;
-  socket: SocketClient;
+  socket: SocketHook;
   canvasRef: React.RefObject<HTMLCanvasElement>;
-  onDraw?: () => void;
+  onDraw?: () => void;  
+  setIsLoading: (isLoading: boolean) => void;
+
 }
 
 export interface UseStickersProps {
   boardId: string;
   transform: Transform;
   config: CanvasConfig;
-  socket: SocketClient;
+  socket: SocketHook;
   canvasRef: React.RefObject<HTMLCanvasElement>;
   onUpdate?: () => void;
 }
@@ -48,4 +50,5 @@ export interface UseCanvasReturn {
   drawGrid: () => void;
   loadedStickersRef: React.RefObject<Map<string, LoadedSticker>>;
   handleCanvasClick: (e: React.MouseEvent) => void;
+  isLoading: boolean;
 }

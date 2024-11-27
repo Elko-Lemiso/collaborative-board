@@ -1,9 +1,6 @@
 import { useCallback, useState } from "react";
 import { Transform, Point } from "../types/canvas";
-
-interface UseTransformProps {
-  canvasRef: React.RefObject<HTMLCanvasElement>;
-}
+import { UseTransformProps } from "../types/hooks";
 
 export function useTransform({ canvasRef }: UseTransformProps) {
   const [transform, setTransform] = useState<Transform>({

@@ -2,16 +2,7 @@ import { useCallback, useRef, useState, useEffect } from "react";
 import { Transform, Point, CanvasConfig } from "../types/canvas";
 import { StickerData, LoadedSticker } from "../types/sticker";
 import { SocketHook } from "@/lib/types";
-
-interface UseStickersProps {
-  boardId: string;
-  transform: Transform;
-  config: CanvasConfig;
-  socket: SocketHook;
-  canvasRef: React.RefObject<HTMLCanvasElement>;
-  onUpdate?: () => void;
-}
-
+import { UseStickersProps } from "@/lib/types/hooks";
 export function useStickers({
   boardId,
   transform,
