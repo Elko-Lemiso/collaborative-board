@@ -42,6 +42,20 @@ npm install --legacy-peer-deps
 npm run dev
 ```
 
+if you see the following error:
+
+```
+../../src/server/patch-error-inspect.ts (36:9) @ canParse
+```
+
+run the following command:
+
+```
+nvm use 21
+```
+
+Next15 is not compatible with any version of Node.js below 21.
+
 ## Usage
 
 - Visit `/auth` page in your browser
@@ -50,15 +64,19 @@ npm run dev
 - Start collaborating!
 
 ## Features Guide
+
 ### Drawing
+
 - Use mouse to draw on canvas
 
 ### Stickers
+
 - Upload custom stickers
 - Drag and resize stickers
 - Delete unwanted stickers
 
 ### Collaboration
+
 - See other users' active on the board
 - Real-time updates
 - Join existing boards
