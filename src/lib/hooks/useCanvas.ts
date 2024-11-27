@@ -30,8 +30,7 @@ export const useCanvas = (
       canvasRef,
     });
 
-    const [isLoading, setIsLoading] = useState<boolean>(true); 
-
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Grid drawing and main render loop function
   const drawGrid = useCallback(() => {
@@ -58,7 +57,7 @@ export const useCanvas = (
       socket,
       canvasRef,
       onDraw: drawGrid,
-      setIsLoading
+      setIsLoading,
     });
 
   // Initialize sub-hook for stickers
@@ -73,7 +72,6 @@ export const useCanvas = (
     addSticker,
     loadStickerImage,
     handleCanvasClick,
-
   } = useStickers({
     boardId,
     transform,

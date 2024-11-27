@@ -83,90 +83,86 @@ export const Canvas = ({ boardId, username }: CanvasProps) => {
     handleCanvasMouseUp(e);
   };
 
-  return (<>
+  return (
+    <>
       {isLoading ? (
-      <div className="h-full w-full flex items-center justify-center z-40">
-      <Image
-        src="/logo.svg"
-        alt="Next.js logo"
-        width={120}
-        height={38}
-        priority
-        className="animate-pulse duration-700 dark:invert"
-      />
-    </div>
+        <div className="h-full w-full flex items-center justify-center z-40">
+          <Image
+            src="/logo.svg"
+            alt="Next.js logo"
+            width={120}
+            height={38}
+            priority
+            className="animate-pulse duration-700 dark:invert"
+          />
+        </div>
       ) : (
+        <div className="relative w-screen h-screen overflow-hidden">
+          <ActionBar
+            mode={mode}
+            setMode={(newMode) => {
+              setMode(newMode as CanvasMode);
+              setSelectedSticker(null);
+            }}
+          />
 
-    <div className="relative w-screen h-screen overflow-hidden">
+          <canvas
+            ref={canvasRef}
+            onMouseDown={handleCanvasMouseDown}
+            onMouseMove={handleCanvasMouseMove}
+            onMouseUp={handleCanvasMouseUp}
+            onMouseLeave={handleCanvasMouseLeave}
+            onContextMenu={(e) => e.preventDefault()}
+            className="w-full h-full touch-none absolute"
+            style={{
+              cursor:
+                mode === "draw"
+                  ? "crosshair"
+                  : mode === "move"
+                  ? isPanning.current
+                    ? "grabbing"
+                    : "grab"
+                  : mode === "select"
+                  ? "pointer"
+                  : mode === "sticker"
+                  ? "copy"
+                  : "default",
+            }}
+          />
 
+          {selectedSticker && !isResizing && mode === "select" && (
+            <StickerSelectionBox
+              sticker={selectedSticker}
+              transform={transform}
+              onResize={handleStickerResize}
+              onDelete={handleDeleteSticker}
+            />
+          )}
 
-
-      <ActionBar
-        mode={mode}
-        setMode={(newMode) => {
-          setMode(newMode as CanvasMode);
-          setSelectedSticker(null);
-        }}
-      />
-
-
-      <canvas
-        ref={canvasRef}
-        onMouseDown={handleCanvasMouseDown}
-        onMouseMove={handleCanvasMouseMove}
-        onMouseUp={handleCanvasMouseUp}
-        onMouseLeave={handleCanvasMouseLeave}
-        onContextMenu={(e) => e.preventDefault()}
-        className="w-full h-full touch-none absolute"
-        style={{
-          cursor:
-            mode === "draw"
-              ? "crosshair"
-              : mode === "move"
-              ? isPanning.current
-                ? "grabbing"
-                : "grab"
-              : mode === "select"
-              ? "pointer"
-              : mode === "sticker"
-              ? "copy"
-              : "default",
-        }}
-      />
-
-      {selectedSticker && !isResizing && mode === "select" && (
-        <StickerSelectionBox
-          sticker={selectedSticker}
-          transform={transform}
-          onResize={handleStickerResize}
-          onDelete={handleDeleteSticker}
-        />
-      )}
-
-      {process.env.NODE_ENV === "development" && (
-        <div className="absolute top-4 left-4 bg-black/50 text-white p-2 rounded">
-          <div>Mode: {mode}</div>
-          <div>Selected: {selectedSticker?.id}</div>
-          <div>
-            Transform: {transform.x.toFixed(0)}, {transform.y.toFixed(0)},{" "}
-            {transform.scale.toFixed(2)}
-          </div>
-          {selectedSticker && (
-            <div>
-              Sticker Pos: {selectedSticker.x.toFixed(0)},{" "}
-              {selectedSticker.y.toFixed(0)}
-              <br />
-              Size: {selectedSticker.width.toFixed(0)} x{" "}
-              {selectedSticker.height.toFixed(0)}
-              <br />
-              Rotation: {selectedSticker.rotation || 0}°
+          {process.env.NODE_ENV === "development" && (
+            <div className="absolute top-4 left-4 bg-black/50 text-white p-2 rounded">
+              <div>Mode: {mode}</div>
+              <div>Selected: {selectedSticker?.id}</div>
+              <div>
+                Transform: {transform.x.toFixed(0)}, {transform.y.toFixed(0)},{" "}
+                {transform.scale.toFixed(2)}
+              </div>
+              {selectedSticker && (
+                <div>
+                  Sticker Pos: {selectedSticker.x.toFixed(0)},{" "}
+                  {selectedSticker.y.toFixed(0)}
+                  <br />
+                  Size: {selectedSticker.width.toFixed(0)} x{" "}
+                  {selectedSticker.height.toFixed(0)}
+                  <br />
+                  Rotation: {selectedSticker.rotation || 0}°
+                </div>
+              )}
             </div>
           )}
         </div>
       )}
-    </div>)}
-  </>
-
+    </>
   );
 };
 
