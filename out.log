@@ -3,19 +3,3740 @@
 > tsx server.ts
 
 > Ready on http://localhost:3000
+A user connected
  ○ Compiling /board/[id] ...
+ ✓ Compiled /board/[id] in 1809ms (729 modules)
+ ✓ Compiled in 102ms (333 modules)
+A user disconnected
+ GET /board/cm3z2sokz0000cw7b5fmt114k 200 in 2804ms
+ ✓ Compiled /favicon.ico in 364ms (411 modules)
+ GET /favicon.ico 200 in 477ms
+ GET /favicon.ico 200 in 11ms
 A user connected
- ✓ Compiled /board/[id] in 3s (753 modules)
- ✓ Compiled in 76ms (336 modules)
-A user connected
- GET /board/cm3z2sokz0000cw7b5fmt114k 200 in 4096ms
-A user connected
-User47 joined board cm3z2sokz0000cw7b5fmt114k
-A user connected
- ○ Compiling /api/boards/[boardId]/stickers ...
- ✓ Compiled /api/boards/[boardId]/stickers in 560ms (742 modules)
- GET /favicon.ico 200 in 670ms
+User959 joined board cm3z2sokz0000cw7b5fmt114k
+ ✓ Compiled /api/boards/[boardId]/stickers in 490ms (736 modules)
+A user disconnected
+ GET /api/boards/cm3z2sokz0000cw7b5fmt114k/stickers 200 in 969ms
+ GET /api/boards/cm3z2sokz0000cw7b5fmt114k/strokes 200 in 973ms
 Fetching strokes for board: cm3z2sokz0000cw7b5fmt114k
 Fetching stickers for board: cm3z2sokz0000cw7b5fmt114k
- GET /api/boards/cm3z2sokz0000cw7b5fmt114k/stickers 200 in 1269ms
- GET /api/boards/cm3z2sokz0000cw7b5fmt114k/strokes 200 in 1342ms
+ ✓ Compiled /auth in 339ms (782 modules)
+ GET /auth 200 in 510ms
+ GET /favicon.ico 200 in 18ms
+ ✓ Compiled /api/auth/register in 147ms (784 modules)
+username elko
+existingUser {
+  id: 'fa55e8b2-e23b-4e41-971e-4bd17a591123',
+  username: 'elko',
+  isConnected: true,
+  createdAt: 2024-11-27T03:10:16.363Z,
+  updatedAt: 2024-11-27T03:10:16.363Z
+}
+ POST /api/auth/register 409 in 182ms
+username elko_test
+existingUser null
+ POST /api/auth/register 200 in 15ms
+ ✓ Compiled /boards in 470ms (980 modules)
+ GET /boards 200 in 596ms
+ ✓ Compiled /api/boards in 166ms (989 modules)
+ GET /api/boards 200 in 278ms
+ GET /api/boards 200 in 13ms
+ POST /api/boards 201 in 18ms
+ GET /boards 200 in 108ms
+ GET /favicon.ico 200 in 29ms
+ GET /favicon.ico 200 in 6ms
+ GET /api/boards 200 in 10ms
+ GET /board/cm3zbku96000011dqkk7cy8e7 200 in 25ms
+A user connected
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+A user disconnected
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 26ms
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 36ms
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 6ms
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 8ms
+ GET /board/cm3zbku96000011dqkk7cy8e7 200 in 71ms
+ GET /favicon.ico 200 in 8ms
+ GET /favicon.ico 200 in 6ms
+A user connected
+User532 joined board cm3zbku96000011dqkk7cy8e7
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 12ms
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 18ms
+User left board cm3zbku96000011dqkk7cy8e7
+Saving stroke to database
+{
+  from: { x: 5574, y: 5470 },
+  to: { x: 5575, y: 5470 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5575, y: 5470 },
+  to: { x: 5579, y: 5467 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5579, y: 5467 },
+  to: { x: 5584, y: 5466 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5584, y: 5466 },
+  to: { x: 5591, y: 5463 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5591, y: 5463 },
+  to: { x: 5601, y: 5460 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5601, y: 5460 },
+  to: { x: 5620, y: 5450 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5620, y: 5450 },
+  to: { x: 5640, y: 5442 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5640, y: 5442 },
+  to: { x: 5660, y: 5432 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5660, y: 5432 },
+  to: { x: 5684, y: 5418 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5684, y: 5418 },
+  to: { x: 5711, y: 5403 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5711, y: 5403 },
+  to: { x: 5737, y: 5386 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5737, y: 5386 },
+  to: { x: 5747, y: 5378 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5747, y: 5378 },
+  to: { x: 5770, y: 5362 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5770, y: 5362 },
+  to: { x: 5788, y: 5350 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5788, y: 5350 },
+  to: { x: 5794, y: 5344 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5794, y: 5344 },
+  to: { x: 5808, y: 5334 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5808, y: 5334 },
+  to: { x: 5818, y: 5326 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5818, y: 5326 },
+  to: { x: 5825, y: 5319 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5825, y: 5319 },
+  to: { x: 5827, y: 5317 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5827, y: 5317 },
+  to: { x: 5832, y: 5313 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5832, y: 5313 },
+  to: { x: 5834, y: 5308 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5834, y: 5308 },
+  to: { x: 5837, y: 5305 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5837, y: 5305 },
+  to: { x: 5839, y: 5300 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5839, y: 5300 },
+  to: { x: 5840, y: 5296 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5840, y: 5296 },
+  to: { x: 5840, y: 5294 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5840, y: 5294 },
+  to: { x: 5840, y: 5291 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5840, y: 5291 },
+  to: { x: 5840, y: 5289 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5840, y: 5289 },
+  to: { x: 5840, y: 5286 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5840, y: 5286 },
+  to: { x: 5840, y: 5285 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5840, y: 5285 },
+  to: { x: 5840, y: 5283 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5840, y: 5283 },
+  to: { x: 5840, y: 5282 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5840, y: 5282 },
+  to: { x: 5838, y: 5281 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5838, y: 5281 },
+  to: { x: 5836, y: 5279 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5836, y: 5279 },
+  to: { x: 5834, y: 5277 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5834, y: 5277 },
+  to: { x: 5831, y: 5276 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5831, y: 5276 },
+  to: { x: 5828, y: 5275 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5828, y: 5275 },
+  to: { x: 5825, y: 5274 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5825, y: 5274 },
+  to: { x: 5821, y: 5274 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5821, y: 5274 },
+  to: { x: 5817, y: 5273 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5817, y: 5273 },
+  to: { x: 5811, y: 5273 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5811, y: 5273 },
+  to: { x: 5802, y: 5273 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5802, y: 5273 },
+  to: { x: 5793, y: 5273 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5793, y: 5273 },
+  to: { x: 5786, y: 5277 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5786, y: 5277 },
+  to: { x: 5777, y: 5283 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5777, y: 5283 },
+  to: { x: 5768, y: 5290 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5768, y: 5290 },
+  to: { x: 5765, y: 5295 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5765, y: 5295 },
+  to: { x: 5752, y: 5309 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5309 },
+  to: { x: 5747, y: 5318 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5747, y: 5318 },
+  to: { x: 5742, y: 5329 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5742, y: 5329 },
+  to: { x: 5739, y: 5341 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5739, y: 5341 },
+  to: { x: 5737, y: 5355 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5737, y: 5355 },
+  to: { x: 5736, y: 5370 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5736, y: 5370 },
+  to: { x: 5736, y: 5386 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5736, y: 5386 },
+  to: { x: 5736, y: 5403 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5736, y: 5403 },
+  to: { x: 5736, y: 5421 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5736, y: 5421 },
+  to: { x: 5736, y: 5439 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5736, y: 5439 },
+  to: { x: 5737, y: 5455 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5737, y: 5455 },
+  to: { x: 5740, y: 5472 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5740, y: 5472 },
+  to: { x: 5741, y: 5479 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5741, y: 5479 },
+  to: { x: 5744, y: 5493 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5744, y: 5493 },
+  to: { x: 5746, y: 5503 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5746, y: 5503 },
+  to: { x: 5748, y: 5514 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5748, y: 5514 },
+  to: { x: 5749, y: 5522 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5749, y: 5522 },
+  to: { x: 5750, y: 5529 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5750, y: 5529 },
+  to: { x: 5751, y: 5531 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5751, y: 5531 },
+  to: { x: 5751, y: 5537 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5751, y: 5537 },
+  to: { x: 5752, y: 5540 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5540 },
+  to: { x: 5752, y: 5543 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5543 },
+  to: { x: 5752, y: 5546 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5546 },
+  to: { x: 5752, y: 5549 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5549 },
+  to: { x: 5752, y: 5550 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5550 },
+  to: { x: 5752, y: 5552 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5552 },
+  to: { x: 5752, y: 5552 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5552 },
+  to: { x: 5752, y: 5553 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5553 },
+  to: { x: 5752, y: 5553 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5553 },
+  to: { x: 5752, y: 5554 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5554 },
+  to: { x: 5752, y: 5554 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5554 },
+  to: { x: 5752, y: 5554 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5554 },
+  to: { x: 5752, y: 5554 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5554 },
+  to: { x: 5752, y: 5553 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5553 },
+  to: { x: 5751, y: 5552 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5751, y: 5552 },
+  to: { x: 5751, y: 5551 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5751, y: 5551 },
+  to: { x: 5750, y: 5549 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5750, y: 5549 },
+  to: { x: 5750, y: 5548 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5750, y: 5548 },
+  to: { x: 5749, y: 5546 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5749, y: 5546 },
+  to: { x: 5749, y: 5545 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5749, y: 5545 },
+  to: { x: 5748, y: 5543 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5748, y: 5543 },
+  to: { x: 5748, y: 5540 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5748, y: 5540 },
+  to: { x: 5747, y: 5537 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5747, y: 5537 },
+  to: { x: 5747, y: 5533 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5747, y: 5533 },
+  to: { x: 5746, y: 5526 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5746, y: 5526 },
+  to: { x: 5746, y: 5517 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5746, y: 5517 },
+  to: { x: 5746, y: 5507 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5746, y: 5507 },
+  to: { x: 5746, y: 5502 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5746, y: 5502 },
+  to: { x: 5746, y: 5494 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5746, y: 5494 },
+  to: { x: 5746, y: 5485 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5746, y: 5485 },
+  to: { x: 5746, y: 5482 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5746, y: 5482 },
+  to: { x: 5746, y: 5476 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5746, y: 5476 },
+  to: { x: 5746, y: 5471 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5746, y: 5471 },
+  to: { x: 5747, y: 5468 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5747, y: 5468 },
+  to: { x: 5747, y: 5465 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5747, y: 5465 },
+  to: { x: 5747, y: 5463 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5747, y: 5463 },
+  to: { x: 5747, y: 5462 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5747, y: 5462 },
+  to: { x: 5748, y: 5462 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5748, y: 5462 },
+  to: { x: 5748, y: 5462 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5748, y: 5462 },
+  to: { x: 5748, y: 5461 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5748, y: 5461 },
+  to: { x: 5748, y: 5461 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5748, y: 5461 },
+  to: { x: 5748, y: 5461 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5748, y: 5461 },
+  to: { x: 5748, y: 5461 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5748, y: 5461 },
+  to: { x: 5749, y: 5461 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5749, y: 5461 },
+  to: { x: 5750, y: 5461 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5750, y: 5461 },
+  to: { x: 5752, y: 5461 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5752, y: 5461 },
+  to: { x: 5755, y: 5461 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5755, y: 5461 },
+  to: { x: 5758, y: 5461 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5758, y: 5461 },
+  to: { x: 5762, y: 5461 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5762, y: 5461 },
+  to: { x: 5770, y: 5466 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5770, y: 5466 },
+  to: { x: 5776, y: 5472 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5776, y: 5472 },
+  to: { x: 5782, y: 5478 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5782, y: 5478 },
+  to: { x: 5785, y: 5483 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5785, y: 5483 },
+  to: { x: 5792, y: 5490 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5792, y: 5490 },
+  to: { x: 5797, y: 5498 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5797, y: 5498 },
+  to: { x: 5802, y: 5505 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5802, y: 5505 },
+  to: { x: 5804, y: 5508 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5804, y: 5508 },
+  to: { x: 5807, y: 5513 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5807, y: 5513 },
+  to: { x: 5810, y: 5517 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5810, y: 5517 },
+  to: { x: 5812, y: 5519 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5812, y: 5519 },
+  to: { x: 5814, y: 5521 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5814, y: 5521 },
+  to: { x: 5816, y: 5521 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5816, y: 5521 },
+  to: { x: 5819, y: 5522 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5819, y: 5522 },
+  to: { x: 5820, y: 5522 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5820, y: 5522 },
+  to: { x: 5823, y: 5519 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5823, y: 5519 },
+  to: { x: 5825, y: 5512 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5825, y: 5512 },
+  to: { x: 5827, y: 5504 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5827, y: 5504 },
+  to: { x: 5830, y: 5493 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5830, y: 5493 },
+  to: { x: 5833, y: 5478 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5833, y: 5478 },
+  to: { x: 5837, y: 5462 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5837, y: 5462 },
+  to: { x: 5839, y: 5443 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5839, y: 5443 },
+  to: { x: 5843, y: 5425 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5843, y: 5425 },
+  to: { x: 5847, y: 5406 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5847, y: 5406 },
+  to: { x: 5849, y: 5398 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5849, y: 5398 },
+  to: { x: 5853, y: 5383 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5853, y: 5383 },
+  to: { x: 5854, y: 5379 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5854, y: 5379 },
+  to: { x: 5857, y: 5371 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5857, y: 5371 },
+  to: { x: 5859, y: 5366 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5859, y: 5366 },
+  to: { x: 5860, y: 5362 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5860, y: 5362 },
+  to: { x: 5862, y: 5360 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5862, y: 5360 },
+  to: { x: 5863, y: 5360 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863, y: 5360 },
+  to: { x: 5865, y: 5360 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5865, y: 5360 },
+  to: { x: 5866, y: 5363 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5866, y: 5363 },
+  to: { x: 5867, y: 5369 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5867, y: 5369 },
+  to: { x: 5868, y: 5374 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5868, y: 5374 },
+  to: { x: 5870, y: 5383 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5870, y: 5383 },
+  to: { x: 5872, y: 5392 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5872, y: 5392 },
+  to: { x: 5874, y: 5402 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5874, y: 5402 },
+  to: { x: 5876, y: 5412 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5876, y: 5412 },
+  to: { x: 5879, y: 5419 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5879, y: 5419 },
+  to: { x: 5880, y: 5421 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5880, y: 5421 },
+  to: { x: 5882, y: 5427 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5882, y: 5427 },
+  to: { x: 5885, y: 5430 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5885, y: 5430 },
+  to: { x: 5887, y: 5432 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5887, y: 5432 },
+  to: { x: 5891, y: 5435 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5891, y: 5435 },
+  to: { x: 5895, y: 5435 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5895, y: 5435 },
+  to: { x: 5898, y: 5435 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5898, y: 5435 },
+  to: { x: 5906, y: 5433 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5906, y: 5433 },
+  to: { x: 5912, y: 5428 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5912, y: 5428 },
+  to: { x: 5919, y: 5420 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5919, y: 5420 },
+  to: { x: 5926, y: 5410 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5926, y: 5410 },
+  to: { x: 5934, y: 5399 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5934, y: 5399 },
+  to: { x: 5944, y: 5386 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5944, y: 5386 },
+  to: { x: 5953, y: 5371 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5953, y: 5371 },
+  to: { x: 5957, y: 5365 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5957, y: 5365 },
+  to: { x: 5965, y: 5354 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5965, y: 5354 },
+  to: { x: 5972, y: 5346 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5972, y: 5346 },
+  to: { x: 5975, y: 5343 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5975, y: 5343 },
+  to: { x: 5980, y: 5337 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5980, y: 5337 },
+  to: { x: 5984, y: 5333 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5984, y: 5333 },
+  to: { x: 5987, y: 5330 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5987, y: 5330 },
+  to: { x: 5989, y: 5328 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5989, y: 5328 },
+  to: { x: 5991, y: 5327 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5991, y: 5327 },
+  to: { x: 5993, y: 5327 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5993, y: 5327 },
+  to: { x: 5994, y: 5327 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5994, y: 5327 },
+  to: { x: 5996, y: 5327 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5996, y: 5327 },
+  to: { x: 5998, y: 5327 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5998, y: 5327 },
+  to: { x: 6000, y: 5327 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6000, y: 5327 },
+  to: { x: 6001, y: 5328 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6001, y: 5328 },
+  to: { x: 6003, y: 5330 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6003, y: 5330 },
+  to: { x: 6005, y: 5331 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6005, y: 5331 },
+  to: { x: 6007, y: 5332 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6007, y: 5332 },
+  to: { x: 6009, y: 5334 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6009, y: 5334 },
+  to: { x: 6011, y: 5335 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6011, y: 5335 },
+  to: { x: 6013, y: 5336 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6013, y: 5336 },
+  to: { x: 6015, y: 5336 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6015, y: 5336 },
+  to: { x: 6017, y: 5336 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6017, y: 5336 },
+  to: { x: 6019, y: 5336 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6019, y: 5336 },
+  to: { x: 6019, y: 5336 },
+  color: '#000000',
+  width: 5
+}
+A user disconnected
+ GET /board/cm3zbku96000011dqkk7cy8e7 200 in 46ms
+ GET /favicon.ico 200 in 15ms
+A user connected
+User541 joined board cm3zbku96000011dqkk7cy8e7
+ GET /favicon.ico 200 in 16ms
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 19ms
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 29ms
+User left board cm3zbku96000011dqkk7cy8e7
+Saving stroke to database
+{
+  from: { x: 5598, y: 5672 },
+  to: { x: 5598, y: 5672 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5598, y: 5672 },
+  to: { x: 5600, y: 5672 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5600, y: 5672 },
+  to: { x: 5603, y: 5671 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5603, y: 5671 },
+  to: { x: 5610, y: 5668 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5610, y: 5668 },
+  to: { x: 5625, y: 5657 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5625, y: 5657 },
+  to: { x: 5637, y: 5650 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5637, y: 5650 },
+  to: { x: 5643, y: 5646 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5643, y: 5646 },
+  to: { x: 5654, y: 5638 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5654, y: 5638 },
+  to: { x: 5664, y: 5630 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5664, y: 5630 },
+  to: { x: 5673, y: 5622 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5673, y: 5622 },
+  to: { x: 5681, y: 5614 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5681, y: 5614 },
+  to: { x: 5688, y: 5606 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5688, y: 5606 },
+  to: { x: 5691, y: 5603 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5691, y: 5603 },
+  to: { x: 5696, y: 5596 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5696, y: 5596 },
+  to: { x: 5700, y: 5589 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5700, y: 5589 },
+  to: { x: 5703, y: 5583 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5703, y: 5583 },
+  to: { x: 5705, y: 5576 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5705, y: 5576 },
+  to: { x: 5707, y: 5570 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5707, y: 5570 },
+  to: { x: 5707, y: 5563 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5707, y: 5563 },
+  to: { x: 5708, y: 5556 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5708, y: 5556 },
+  to: { x: 5708, y: 5550 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5708, y: 5550 },
+  to: { x: 5708, y: 5544 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5708, y: 5544 },
+  to: { x: 5708, y: 5540 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5708, y: 5540 },
+  to: { x: 5708, y: 5533 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5708, y: 5533 },
+  to: { x: 5708, y: 5528 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5708, y: 5528 },
+  to: { x: 5706, y: 5523 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5706, y: 5523 },
+  to: { x: 5704, y: 5519 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5704, y: 5519 },
+  to: { x: 5701, y: 5513 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5701, y: 5513 },
+  to: { x: 5697, y: 5508 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5697, y: 5508 },
+  to: { x: 5693, y: 5503 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5693, y: 5503 },
+  to: { x: 5690, y: 5500 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5690, y: 5500 },
+  to: { x: 5686, y: 5495 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5686, y: 5495 },
+  to: { x: 5684, y: 5494 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5684, y: 5494 },
+  to: { x: 5681, y: 5492 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5681, y: 5492 },
+  to: { x: 5678, y: 5490 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5678, y: 5490 },
+  to: { x: 5676, y: 5489 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5676, y: 5489 },
+  to: { x: 5671, y: 5488 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5671, y: 5488 },
+  to: { x: 5668, y: 5488 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5668, y: 5488 },
+  to: { x: 5665, y: 5488 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5665, y: 5488 },
+  to: { x: 5662, y: 5489 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5662, y: 5489 },
+  to: { x: 5657, y: 5495 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5657, y: 5495 },
+  to: { x: 5652, y: 5500 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5652, y: 5500 },
+  to: { x: 5647, y: 5507 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5647, y: 5507 },
+  to: { x: 5645, y: 5512 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5645, y: 5512 },
+  to: { x: 5641, y: 5520 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5641, y: 5520 },
+  to: { x: 5636, y: 5535 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5636, y: 5535 },
+  to: { x: 5634, y: 5545 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5634, y: 5545 },
+  to: { x: 5631, y: 5557 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5631, y: 5557 },
+  to: { x: 5631, y: 5564 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5631, y: 5564 },
+  to: { x: 5631, y: 5574 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5631, y: 5574 },
+  to: { x: 5631, y: 5593 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5631, y: 5593 },
+  to: { x: 5631, y: 5605 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5631, y: 5605 },
+  to: { x: 5631, y: 5617 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5631, y: 5617 },
+  to: { x: 5632, y: 5623 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5632, y: 5623 },
+  to: { x: 5635, y: 5635 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5635, y: 5635 },
+  to: { x: 5637, y: 5645 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5637, y: 5645 },
+  to: { x: 5640, y: 5657 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5640, y: 5657 },
+  to: { x: 5643, y: 5667 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5643, y: 5667 },
+  to: { x: 5646, y: 5676 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5646, y: 5676 },
+  to: { x: 5648, y: 5686 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5648, y: 5686 },
+  to: { x: 5649, y: 5696 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5649, y: 5696 },
+  to: { x: 5651, y: 5703 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5651, y: 5703 },
+  to: { x: 5651, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5651, y: 5710 },
+  to: { x: 5652, y: 5718 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5652, y: 5718 },
+  to: { x: 5652, y: 5725 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5652, y: 5725 },
+  to: { x: 5652, y: 5732 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5652, y: 5732 },
+  to: { x: 5652, y: 5739 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5652, y: 5739 },
+  to: { x: 5652, y: 5744 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5652, y: 5744 },
+  to: { x: 5650, y: 5749 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5650, y: 5749 },
+  to: { x: 5649, y: 5751 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5649, y: 5751 },
+  to: { x: 5647, y: 5755 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5647, y: 5755 },
+  to: { x: 5646, y: 5758 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5646, y: 5758 },
+  to: { x: 5643, y: 5763 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5643, y: 5763 },
+  to: { x: 5641, y: 5764 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5641, y: 5764 },
+  to: { x: 5639, y: 5766 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5639, y: 5766 },
+  to: { x: 5637, y: 5768 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5637, y: 5768 },
+  to: { x: 5634, y: 5771 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5634, y: 5771 },
+  to: { x: 5631, y: 5772 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5631, y: 5772 },
+  to: { x: 5628, y: 5773 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5628, y: 5773 },
+  to: { x: 5626, y: 5774 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5626, y: 5774 },
+  to: { x: 5622, y: 5775 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5622, y: 5775 },
+  to: { x: 5617, y: 5776 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5617, y: 5776 },
+  to: { x: 5614, y: 5777 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5614, y: 5777 },
+  to: { x: 5609, y: 5777 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5609, y: 5777 },
+  to: { x: 5605, y: 5777 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5605, y: 5777 },
+  to: { x: 5601, y: 5777 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5601, y: 5777 },
+  to: { x: 5599, y: 5777 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5599, y: 5777 },
+  to: { x: 5593, y: 5776 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5593, y: 5776 },
+  to: { x: 5590, y: 5774 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5590, y: 5774 },
+  to: { x: 5587, y: 5772 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5587, y: 5772 },
+  to: { x: 5584, y: 5770 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5584, y: 5770 },
+  to: { x: 5581, y: 5767 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5581, y: 5767 },
+  to: { x: 5579, y: 5764 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5579, y: 5764 },
+  to: { x: 5576, y: 5760 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5576, y: 5760 },
+  to: { x: 5574, y: 5755 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5574, y: 5755 },
+  to: { x: 5572, y: 5750 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5572, y: 5750 },
+  to: { x: 5570, y: 5745 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5570, y: 5745 },
+  to: { x: 5569, y: 5738 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5569, y: 5738 },
+  to: { x: 5569, y: 5733 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5569, y: 5733 },
+  to: { x: 5569, y: 5727 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5569, y: 5727 },
+  to: { x: 5569, y: 5725 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5569, y: 5725 },
+  to: { x: 5569, y: 5721 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5569, y: 5721 },
+  to: { x: 5569, y: 5718 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5569, y: 5718 },
+  to: { x: 5569, y: 5715 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5569, y: 5715 },
+  to: { x: 5570, y: 5713 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5570, y: 5713 },
+  to: { x: 5573, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5573, y: 5710 },
+  to: { x: 5576, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5576, y: 5710 },
+  to: { x: 5580, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5580, y: 5710 },
+  to: { x: 5584, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5584, y: 5710 },
+  to: { x: 5594, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5594, y: 5710 },
+  to: { x: 5602, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5602, y: 5710 },
+  to: { x: 5608, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5608, y: 5710 },
+  to: { x: 5616, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5616, y: 5710 },
+  to: { x: 5626, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5626, y: 5710 },
+  to: { x: 5642, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5642, y: 5710 },
+  to: { x: 5653, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5653, y: 5710 },
+  to: { x: 5659, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5659, y: 5710 },
+  to: { x: 5669, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5669, y: 5710 },
+  to: { x: 5679, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5679, y: 5710 },
+  to: { x: 5689, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5689, y: 5710 },
+  to: { x: 5705, y: 5710 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5705, y: 5710 },
+  to: { x: 5715, y: 5712 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5715, y: 5712 },
+  to: { x: 5720, y: 5714 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5720, y: 5714 },
+  to: { x: 5729, y: 5718 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5729, y: 5718 },
+  to: { x: 5737, y: 5722 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5737, y: 5722 },
+  to: { x: 5743, y: 5727 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5743, y: 5727 },
+  to: { x: 5749, y: 5732 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5749, y: 5732 },
+  to: { x: 5750, y: 5733 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5750, y: 5733 },
+  to: { x: 5754, y: 5738 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5754, y: 5738 },
+  to: { x: 5757, y: 5741 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5757, y: 5741 },
+  to: { x: 5759, y: 5743 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5759, y: 5743 },
+  to: { x: 5760, y: 5745 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5760, y: 5745 },
+  to: { x: 5761, y: 5747 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5761, y: 5747 },
+  to: { x: 5761, y: 5747 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5761, y: 5747 },
+  to: { x: 5761, y: 5748 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5761, y: 5748 },
+  to: { x: 5762, y: 5748 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5762, y: 5748 },
+  to: { x: 5762, y: 5749 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5762, y: 5749 },
+  to: { x: 5762, y: 5749 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5762, y: 5749 },
+  to: { x: 5762, y: 5749 },
+  color: '#000000',
+  width: 5
+}
+ GET /board/cm3zbku96000011dqkk7cy8e7 200 in 50ms
+A user connected
+User45 joined board cm3zbku96000011dqkk7cy8e7
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 32ms
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 42ms
+User left board cm3zbku96000011dqkk7cy8e7
+Saving stroke to database
+{
+  from: { x: 6216, y: 5526 },
+  to: { x: 6216, y: 5526 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6042, y: 5497 },
+  to: { x: 6041, y: 5497 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6041, y: 5497 },
+  to: { x: 6043, y: 5497 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6043, y: 5497 },
+  to: { x: 6048, y: 5497 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6048, y: 5497 },
+  to: { x: 6075, y: 5497 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6075, y: 5497 },
+  to: { x: 6118, y: 5497 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6118, y: 5497 },
+  to: { x: 6169, y: 5497 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6169, y: 5497 },
+  to: { x: 6203, y: 5496 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6203, y: 5496 },
+  to: { x: 6234, y: 5486 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6234, y: 5486 },
+  to: { x: 6249, y: 5471 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6249, y: 5471 },
+  to: { x: 6258, y: 5449 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6258, y: 5449 },
+  to: { x: 6258, y: 5430 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6258, y: 5430 },
+  to: { x: 6258, y: 5407 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6258, y: 5407 },
+  to: { x: 6258, y: 5381 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6258, y: 5381 },
+  to: { x: 6255, y: 5365 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6255, y: 5365 },
+  to: { x: 6245, y: 5336 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6245, y: 5336 },
+  to: { x: 6237, y: 5324 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6237, y: 5324 },
+  to: { x: 6226, y: 5313 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6226, y: 5313 },
+  to: { x: 6217, y: 5308 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6217, y: 5308 },
+  to: { x: 6199, y: 5310 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6199, y: 5310 },
+  to: { x: 6188, y: 5326 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6188, y: 5326 },
+  to: { x: 6170, y: 5362 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6170, y: 5362 },
+  to: { x: 6162, y: 5392 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6162, y: 5392 },
+  to: { x: 6153, y: 5434 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6153, y: 5434 },
+  to: { x: 6148, y: 5472 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6148, y: 5472 },
+  to: { x: 6145, y: 5508 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6145, y: 5508 },
+  to: { x: 6144, y: 5541 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6144, y: 5541 },
+  to: { x: 6140, y: 5570 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6140, y: 5570 },
+  to: { x: 6136, y: 5589 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6136, y: 5589 },
+  to: { x: 6120, y: 5623 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6120, y: 5623 },
+  to: { x: 6111, y: 5634 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6111, y: 5634 },
+  to: { x: 6092, y: 5650 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6092, y: 5650 },
+  to: { x: 6071, y: 5659 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6071, y: 5659 },
+  to: { x: 6043, y: 5663 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6043, y: 5663 },
+  to: { x: 6009, y: 5664 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6009, y: 5664 },
+  to: { x: 5978, y: 5662 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5978, y: 5662 },
+  to: { x: 5958, y: 5656 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5958, y: 5656 },
+  to: { x: 5939, y: 5649 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5939, y: 5649 },
+  to: { x: 5920, y: 5639 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5920, y: 5639 },
+  to: { x: 5912, y: 5633 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5912, y: 5633 },
+  to: { x: 5907, y: 5627 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5907, y: 5627 },
+  to: { x: 5903, y: 5620 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5903, y: 5620 },
+  to: { x: 5901, y: 5614 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5901, y: 5614 },
+  to: { x: 5900, y: 5605 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5900, y: 5605 },
+  to: { x: 5900, y: 5599 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5900, y: 5599 },
+  to: { x: 5900, y: 5595 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5900, y: 5595 },
+  to: { x: 5900, y: 5592 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5900, y: 5592 },
+  to: { x: 5900, y: 5590 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5900, y: 5590 },
+  to: { x: 5900, y: 5590 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5900, y: 5590 },
+  to: { x: 5901, y: 5590 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5901, y: 5590 },
+  to: { x: 5901, y: 5590 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5901, y: 5590 },
+  to: { x: 5902, y: 5590 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5899.754009714929, y: 5434.711232633156 },
+  to: { x: 5904.032084508628, y: 5434.711232633156 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5904.032084508628, y: 5434.711232633156 },
+  to: { x: 5912.588234096025, y: 5434.711232633156 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5912.588234096025, y: 5434.711232633156 },
+  to: { x: 5923.283421080271, y: 5438.989307426855 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5923.283421080271, y: 5438.989307426855 },
+  to: { x: 5938.256682858216, y: 5441.128344823704 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5938.256682858216, y: 5441.128344823704 },
+  to: { x: 5953.22994463616, y: 5447.545457014252 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5953.22994463616, y: 5447.545457014252 },
+  to: { x: 5961.7860942235575, y: 5449.684494411101 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5961.7860942235575, y: 5449.684494411101 },
+  to: { x: 5974.620318604653, y: 5451.8235318079505 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5974.620318604653, y: 5451.8235318079505 },
+  to: { x: 5991.732617779447, y: 5453.962569204799 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5991.732617779447, y: 5453.962569204799 },
+  to: { x: 5993.871655176296, y: 5456.101606601649 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5993.871655176296, y: 5456.101606601649 },
+  to: { x: 6002.427804763693, y: 5456.101606601649 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6002.427804763693, y: 5456.101606601649 },
+  to: { x: 6013.1229917479395, y: 5458.240643998498 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6013.1229917479395, y: 5458.240643998498 },
+  to: { x: 6015.262029144788, y: 5458.240643998498 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6015.262029144788, y: 5458.240643998498 },
+  to: { x: 6021.679141335337, y: 5458.240643998498 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6021.679141335337, y: 5458.240643998498 },
+  to: { x: 6023.8181787321855, y: 5458.240643998498 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6023.8181787321855, y: 5458.240643998498 },
+  to: { x: 6040.930477906979, y: 5411.1818212678145 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6040.930477906979, y: 5411.1818212678145 },
+  to: { x: 6040.930477906979, y: 5394.069522093021 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6040.930477906979, y: 5394.069522093021 },
+  to: { x: 6040.930477906979, y: 5379.0962603150765 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6040.930477906979, y: 5379.0962603150765 },
+  to: { x: 6040.930477906979, y: 5364.122998537131 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6040.930477906979, y: 5364.122998537131 },
+  to: { x: 6040.930477906979, y: 5347.010699362338 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6040.930477906979, y: 5347.010699362338 },
+  to: { x: 6036.652403113281, y: 5332.037437584393 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6036.652403113281, y: 5332.037437584393 },
+  to: { x: 6032.374328319583, y: 5317.0641758064485 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6032.374328319583, y: 5317.0641758064485 },
+  to: { x: 6028.096253525884, y: 5304.229951425353 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6028.096253525884, y: 5304.229951425353 },
+  to: { x: 6023.8181787321855, y: 5293.534764441107 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6023.8181787321855, y: 5293.534764441107 },
+  to: { x: 6015.262029144788, y: 5282.83957745686 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6015.262029144788, y: 5282.83957745686 },
+  to: { x: 6006.705879557391, y: 5270.005353075765 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 6006.705879557391, y: 5270.005353075765 },
+  to: { x: 5998.149729969995, y: 5263.588240885217 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5998.149729969995, y: 5263.588240885217 },
+  to: { x: 5991.732617779447, y: 5257.171128694669 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5991.732617779447, y: 5257.171128694669 },
+  to: { x: 5981.037430795201, y: 5252.893053900971 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5981.037430795201, y: 5252.893053900971 },
+  to: { x: 5972.4812812078035, y: 5250.754016504122 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5972.4812812078035, y: 5250.754016504122 },
+  to: { x: 5963.925131620406, y: 5248.614979107272 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5963.925131620406, y: 5248.614979107272 },
+  to: { x: 5955.36898203301, y: 5248.614979107272 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5955.36898203301, y: 5248.614979107272 },
+  to: { x: 5946.812832445613, y: 5248.614979107272 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5946.812832445613, y: 5248.614979107272 },
+  to: { x: 5940.395720255065, y: 5252.893053900971 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5940.395720255065, y: 5252.893053900971 },
+  to: { x: 5936.117645461367, y: 5259.310166091519 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5936.117645461367, y: 5259.310166091519 },
+  to: { x: 5929.700533270819, y: 5265.727278282066 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5929.700533270819, y: 5265.727278282066 },
+  to: { x: 5925.42245847712, y: 5276.422465266312 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5925.42245847712, y: 5276.422465266312 },
+  to: { x: 5923.283421080271, y: 5287.117652250558 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5923.283421080271, y: 5287.117652250558 },
+  to: { x: 5921.144383683422, y: 5299.951876631654 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5921.144383683422, y: 5299.951876631654 },
+  to: { x: 5921.144383683422, y: 5312.78610101275 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5921.144383683422, y: 5312.78610101275 },
+  to: { x: 5921.144383683422, y: 5327.7593627906945 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5921.144383683422, y: 5327.7593627906945 },
+  to: { x: 5921.144383683422, y: 5342.732624568639 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5921.144383683422, y: 5342.732624568639 },
+  to: { x: 5921.144383683422, y: 5357.705886346584 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5921.144383683422, y: 5357.705886346584 },
+  to: { x: 5921.144383683422, y: 5372.679148124528 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5921.144383683422, y: 5372.679148124528 },
+  to: { x: 5921.144383683422, y: 5385.513372505624 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5921.144383683422, y: 5385.513372505624 },
+  to: { x: 5923.283421080271, y: 5398.347596886719 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5923.283421080271, y: 5398.347596886719 },
+  to: { x: 5923.283421080271, y: 5404.764709077267 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5923.283421080271, y: 5404.764709077267 },
+  to: { x: 5925.42245847712, y: 5415.459896061513 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5925.42245847712, y: 5415.459896061513 },
+  to: { x: 5927.56149587397, y: 5424.01604564891 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5927.56149587397, y: 5424.01604564891 },
+  to: { x: 5927.56149587397, y: 5430.433157839458 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5927.56149587397, y: 5430.433157839458 },
+  to: { x: 5927.56149587397, y: 5436.850270030005 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5927.56149587397, y: 5436.850270030005 },
+  to: { x: 5927.56149587397, y: 5443.267382220553 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5927.56149587397, y: 5443.267382220553 },
+  to: { x: 5927.56149587397, y: 5445.406419617402 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5927.56149587397, y: 5445.406419617402 },
+  to: { x: 5927.56149587397, y: 5449.684494411101 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5927.56149587397, y: 5449.684494411101 },
+  to: { x: 5927.56149587397, y: 5451.8235318079505 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5927.56149587397, y: 5451.8235318079505 },
+  to: { x: 5927.56149587397, y: 5453.962569204799 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5927.56149587397, y: 5453.962569204799 },
+  to: { x: 5927.56149587397, y: 5456.101606601649 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5927.56149587397, y: 5456.101606601649 },
+  to: { x: 5925.42245847712, y: 5456.101606601649 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5925.42245847712, y: 5456.101606601649 },
+  to: { x: 5921.144383683422, y: 5456.101606601649 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5921.144383683422, y: 5456.101606601649 },
+  to: { x: 5916.866308889724, y: 5456.101606601649 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5916.866308889724, y: 5456.101606601649 },
+  to: { x: 5910.449196699175, y: 5456.101606601649 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5910.449196699175, y: 5456.101606601649 },
+  to: { x: 5904.032084508628, y: 5451.8235318079505 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5904.032084508628, y: 5451.8235318079505 },
+  to: { x: 5895.475934921231, y: 5441.128344823704 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5895.475934921231, y: 5441.128344823704 },
+  to: { x: 5878.3636357464375, y: 5426.155083045759 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5878.3636357464375, y: 5426.155083045759 },
+  to: { x: 5871.946523555889, y: 5415.459896061513 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5871.946523555889, y: 5415.459896061513 },
+  to: { x: 5863.390373968492, y: 5400.4866342835685 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5400.4866342835685 },
+  to: { x: 5854.834224381096, y: 5385.513372505624 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5854.834224381096, y: 5385.513372505624 },
+  to: { x: 5848.417112190547, y: 5374.818185521378 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5848.417112190547, y: 5374.818185521378 },
+  to: { x: 5844.13903739685, y: 5368.40107333083 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5844.13903739685, y: 5368.40107333083 },
+  to: { x: 5839.860962603151, y: 5359.844923743432 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5839.860962603151, y: 5359.844923743432 },
+  to: { x: 5835.582887809453, y: 5353.427811552885 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5835.582887809453, y: 5353.427811552885 },
+  to: { x: 5835.582887809453, y: 5347.010699362338 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5835.582887809453, y: 5347.010699362338 },
+  to: { x: 5833.443850412603, y: 5344.871661965488 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5833.443850412603, y: 5344.871661965488 },
+  to: { x: 5831.304813015754, y: 5340.593587171789 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5831.304813015754, y: 5340.593587171789 },
+  to: { x: 5831.304813015754, y: 5340.593587171789 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5831.304813015754, y: 5340.593587171789 },
+  to: { x: 5831.304813015754, y: 5338.4545497749405 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5831.304813015754, y: 5338.4545497749405 },
+  to: { x: 5831.304813015754, y: 5338.4545497749405 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5829.165775618904, y: 5338.4545497749405 },
+  to: { x: 5831.304813015754, y: 5338.4545497749405 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5831.304813015754, y: 5338.4545497749405 },
+  to: { x: 5835.582887809453, y: 5340.593587171789 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5835.582887809453, y: 5340.593587171789 },
+  to: { x: 5839.860962603151, y: 5342.732624568639 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5839.860962603151, y: 5342.732624568639 },
+  to: { x: 5844.13903739685, y: 5344.871661965488 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5844.13903739685, y: 5344.871661965488 },
+  to: { x: 5848.417112190547, y: 5349.149736759186 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5848.417112190547, y: 5349.149736759186 },
+  to: { x: 5850.556149587397, y: 5349.149736759186 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5850.556149587397, y: 5349.149736759186 },
+  to: { x: 5852.695186984246, y: 5351.288774156036 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5852.695186984246, y: 5351.288774156036 },
+  to: { x: 5854.834224381096, y: 5351.288774156036 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5854.834224381096, y: 5351.288774156036 },
+  to: { x: 5856.973261777945, y: 5351.288774156036 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5856.973261777945, y: 5351.288774156036 },
+  to: { x: 5859.112299174794, y: 5353.427811552885 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5859.112299174794, y: 5353.427811552885 },
+  to: { x: 5861.251336571643, y: 5353.427811552885 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5861.251336571643, y: 5353.427811552885 },
+  to: { x: 5861.251336571643, y: 5353.427811552885 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5861.251336571643, y: 5353.427811552885 },
+  to: { x: 5863.390373968492, y: 5353.427811552885 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5353.427811552885 },
+  to: { x: 5863.390373968492, y: 5351.288774156036 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5351.288774156036 },
+  to: { x: 5863.390373968492, y: 5344.871661965488 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5344.871661965488 },
+  to: { x: 5863.390373968492, y: 5340.593587171789 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5340.593587171789 },
+  to: { x: 5863.390373968492, y: 5332.037437584393 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5332.037437584393 },
+  to: { x: 5863.390373968492, y: 5312.78610101275 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5312.78610101275 },
+  to: { x: 5863.390373968492, y: 5297.812839234805 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5297.812839234805 },
+  to: { x: 5863.390373968492, y: 5287.117652250558 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5287.117652250558 },
+  to: { x: 5863.390373968492, y: 5272.144390472614 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5272.144390472614 },
+  to: { x: 5863.390373968492, y: 5252.893053900971 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5252.893053900971 },
+  to: { x: 5863.390373968492, y: 5246.475941710423 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5246.475941710423 },
+  to: { x: 5863.390373968492, y: 5233.641717329328 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5233.641717329328 },
+  to: { x: 5863.390373968492, y: 5225.08556774193 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5225.08556774193 },
+  to: { x: 5861.251336571643, y: 5218.668455551383 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5861.251336571643, y: 5218.668455551383 },
+  to: { x: 5861.251336571643, y: 5214.390380757684 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5861.251336571643, y: 5214.390380757684 },
+  to: { x: 5861.251336571643, y: 5212.251343360836 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5861.251336571643, y: 5212.251343360836 },
+  to: { x: 5859.112299174794, y: 5210.112305963986 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5859.112299174794, y: 5210.112305963986 },
+  to: { x: 5859.112299174794, y: 5210.112305963986 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5859.112299174794, y: 5210.112305963986 },
+  to: { x: 5856.973261777945, y: 5210.112305963986 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5856.973261777945, y: 5210.112305963986 },
+  to: { x: 5856.973261777945, y: 5210.112305963986 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5856.973261777945, y: 5210.112305963986 },
+  to: { x: 5854.834224381096, y: 5216.529418154534 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5854.834224381096, y: 5216.529418154534 },
+  to: { x: 5854.834224381096, y: 5229.363642535629 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5854.834224381096, y: 5229.363642535629 },
+  to: { x: 5854.834224381096, y: 5244.3369043135735 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5854.834224381096, y: 5244.3369043135735 },
+  to: { x: 5854.834224381096, y: 5263.588240885217 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5854.834224381096, y: 5263.588240885217 },
+  to: { x: 5854.834224381096, y: 5284.97861485371 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5854.834224381096, y: 5284.97861485371 },
+  to: { x: 5856.973261777945, y: 5308.508026219051 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5856.973261777945, y: 5308.508026219051 },
+  to: { x: 5863.390373968492, y: 5332.037437584393 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5863.390373968492, y: 5332.037437584393 },
+  to: { x: 5871.946523555889, y: 5353.427811552885 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5871.946523555889, y: 5353.427811552885 },
+  to: { x: 5878.3636357464375, y: 5364.122998537131 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5878.3636357464375, y: 5364.122998537131 },
+  to: { x: 5889.0588227306835, y: 5383.374335108774 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5889.0588227306835, y: 5383.374335108774 },
+  to: { x: 5899.754009714929, y: 5400.4866342835685 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5899.754009714929, y: 5400.4866342835685 },
+  to: { x: 5910.449196699175, y: 5415.459896061513 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5910.449196699175, y: 5415.459896061513 },
+  to: { x: 5914.727271492874, y: 5421.8770082520605 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5914.727271492874, y: 5421.8770082520605 },
+  to: { x: 5921.144383683422, y: 5430.433157839458 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5921.144383683422, y: 5430.433157839458 },
+  to: { x: 5927.56149587397, y: 5436.850270030005 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5927.56149587397, y: 5436.850270030005 },
+  to: { x: 5933.978608064517, y: 5443.267382220553 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5933.978608064517, y: 5443.267382220553 },
+  to: { x: 5936.117645461367, y: 5447.545457014252 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5936.117645461367, y: 5447.545457014252 },
+  to: { x: 5940.395720255065, y: 5451.8235318079505 },
+  color: '#000000',
+  width: 5
+}
+Saving stroke to database
+{
+  from: { x: 5940.395720255065, y: 5451.8235318079505 },
+  to: { x: 5942.534757651914, y: 5451.8235318079505 },
+  color: '#000000',
+  width: 5
+}
+ GET /board/cm3zbku96000011dqkk7cy8e7 200 in 31ms
+A user disconnected
+A user connected
+User986 joined board cm3zbku96000011dqkk7cy8e7
+ GET /favicon.ico 200 in 17ms
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 32ms
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 50ms
+User left board cm3zbku96000011dqkk7cy8e7
+A user disconnected
+ GET /board/cm3zbku96000011dqkk7cy8e7 200 in 51ms
+ GET /favicon.ico 200 in 14ms
+A user connected
+User471 joined board cm3zbku96000011dqkk7cy8e7
+ GET /favicon.ico 200 in 14ms
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 25ms
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 49ms
+User left board cm3zbku96000011dqkk7cy8e7
+A user disconnected
+ GET /boards 200 in 29ms
+ GET /favicon.ico 200 in 49ms
+ GET /api/boards 200 in 157ms
+ GET /board/cm3zbku96000011dqkk7cy8e7 200 in 16ms
+A user connected
+A user disconnected
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 37ms
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 63ms
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 152ms
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 223ms
+ ✓ Compiled /api/boards/[boardId]/stickers/upload in 306ms (1011 modules)
+Uploading sticker to board: cm3zbku96000011dqkk7cy8e7
+ POST /api/boards/cm3zbku96000011dqkk7cy8e7/stickers/upload 201 in 893ms
+ GET /boards 200 in 164ms
+ GET /favicon.ico 200 in 23ms
+ GET /api/boards 200 in 24ms
+ GET /board/cm3zbku96000011dqkk7cy8e7 200 in 29ms
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 138ms
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 148ms
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 51ms
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 69ms
+Uploading sticker to board: cm3zbku96000011dqkk7cy8e7
+ POST /api/boards/cm3zbku96000011dqkk7cy8e7/stickers/upload 201 in 20ms
+ GET /board/cm3zbku96000011dqkk7cy8e7 200 in 103ms
+ GET /favicon.ico 200 in 12ms
+A user connected
+User470 joined board cm3zbku96000011dqkk7cy8e7
+ GET /favicon.ico 200 in 8ms
+Fetching stickers for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/stickers 200 in 17ms
+Fetching strokes for board: cm3zbku96000011dqkk7cy8e7
+ GET /api/boards/cm3zbku96000011dqkk7cy8e7/strokes 200 in 32ms
+User left board cm3zbku96000011dqkk7cy8e7

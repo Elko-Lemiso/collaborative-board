@@ -14,7 +14,7 @@ model Board {
   createdAt DateTime  @default(now())
   strokes   Stroke[]
   stickers  Sticker[]
-  User      User[]
+  users     User[]    @relation("BoardToUser")
 }
 
 model Stroke {
@@ -28,7 +28,7 @@ model Stroke {
   color     String
   width     Float
   createdAt DateTime @default(now())
-  User      User?    @relation(fields: [userId], references: [id])
+  user      User?    @relation(fields: [userId], references: [id])
   userId    String?
 }
 
@@ -44,19 +44,17 @@ model Sticker {
   rotation  Float    @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  User      User?    @relation(fields: [userId], references: [id])
+  user      User?    @relation(fields: [userId], references: [id])
   userId    String?
 }
 
 model User {
-  id             String    @id @default(uuid())
-  username       String    @unique
-  isConnected    Boolean   @default(false)
-  currentBoardId String?
-  currentBoard   Board?    @relation(fields: [boardId], references: [id])
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  Stroke         Stroke[]
-  Sticker        Sticker[]
-  boardId        String?
+  id          String    @id @default(uuid())
+  username    String    @unique
+  isConnected Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  strokes     Stroke[]
+  stickers    Sticker[]
+  boards      Board[]   @relation("BoardToUser")
 }

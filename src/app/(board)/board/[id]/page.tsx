@@ -1,10 +1,13 @@
 "use client";
 
-import Canvas from "@/components/Canvas";
-import React, {use} from "react";
+import Canvas from "@/components/Canvas/Canvas";
+import React, { use } from "react";
 
-export default function BoardPage({ params }: { params: Promise<{ id: string }> }) {
-
+export default function BoardPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id: boardId } = use(params);
   // generate a random username
   const generateUsername = () => {

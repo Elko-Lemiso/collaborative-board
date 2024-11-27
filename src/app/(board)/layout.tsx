@@ -5,10 +5,6 @@ interface layoutProps {
 }
 
 const DashboardLayout = ({ children }: layoutProps) => {
-  return (
-    <main className="h-full w-full">
-      {children}
-    </main>
-  );
+  return <main className="h-full w-full">{children}</main>;
 };
 export default DashboardLayout;
